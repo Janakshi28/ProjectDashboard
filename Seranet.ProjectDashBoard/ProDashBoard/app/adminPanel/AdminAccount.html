@@ -90,10 +90,15 @@
                         </span>
                         <!--<span><md-checkbox class="md-warn md-align-top-left"  data-ng-click="setselectedAccountAvailability()" id="selectedAccountCheck" data-ng-model="isAccountInactive" label="md-checkbox" data-ng-disabled="accountDisabled">Inactive Account</md-checkbox></span>-->
                         <span>
-                            <img src="/Content/Images/tooltip.png" style="height:55%;">
-                            <md-tooltip id="slider-tooltip" md-direction="top" md-autohide="true">
-                                Provide the Codes of the Billable projects in Jira. If there are multiple billable project codes, it should be separated by comma ‘,’
-                                (ex : CD,CX)
+                            <img src="/Content/Images/tooltip.png" class="tooltipImg">
+                            <md-tooltip id="slider-tooltip" md-direction="top" class="large" md-autohide="true">
+                                <div class="tooltipDiv">
+                                    <label class="tooltipLabel">
+                                        Provide the Codes of the Billable projects in Jira.<br> If there are multiple billable project codes,
+                                        <br>it should be separated by comma ‘,’
+                                        (ex : CD,CX)
+                                        </label>
+                                    </div>
                             </md-tooltip>
                         </span>
                     </div>

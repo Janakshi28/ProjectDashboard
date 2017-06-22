@@ -64,14 +64,18 @@
                     <div class="col-md-3" style="display:flex">
                         <span><input type="text" class="form-control adminProjectField" data-ng-disabled="false" data-ng-model="riskUrl"></span>
                         <span>
-                            <img src="/Content/Images/tooltip.png" style="height:55%;">
-                            <md-tooltip id="slider-tooltip" md-direction="top" md-autohide="true">
-                                Provide the URL to the project risk list in Risk management system. The format should be as follows:
-                                https://99xtech.sharepoint.com/projects/<AccountName>
-                                    /<ProjectName>
-                                        /Lists/Risk%20List
-                                        https://99xtech.sharepoint.com/projects/Adra/Balancer/Lists/Risk%20List
+                            <img src="/Content/Images/tooltip.png" class="tooltipImg">
+                            <md-tooltip id="slider-tooltip" md-direction="top" class="large" md-autohide="true">
+                                <div class="tooltipDiv">
+                                    <label class="tooltipLabel">
+                                        Provide the URL to the project risk list in Risk management <br>system. Format:
+                                        https://99xtech.sharepoint.com/projects <br> /AccountName/ProjectName/Lists/Risk%20List
+                                               
+                                    </label>
+                                </div>
                             </md-tooltip>
+                               
+                         
                         </span>
                     </div>
 
@@ -90,10 +94,17 @@
                     <div class="col-md-5" style="display:flex">
                         <span><input type="text" class="form-control adminProjectField" data-ng-model="confluencePageId"></span>
                         <span>
-                            <img src="/Content/Images/tooltip.png" style="height:55%;">
-                            <md-tooltip id="slider-tooltip" md-direction="top" md-autohide="true">
-                                Provide the ISO Audit component name of the project. This can be found under https://seranet.atlassian.net/projects/SLAU
+                            <img src="/Content/Images/tooltip.png" class="tooltipImg">
+                            <md-tooltip id="slider-tooltip" md-direction="top" class="large" md-autohide="true">
+                                <div class="tooltipDiv">
+                                    <label class="tooltipLabel">
+                                        Provide the ISO Audit component name of the project. <br>
+                                        This can be found under<br> 
+                                        https://seranet.atlassian.net/projects/SLAU
+                                    </label>
+                                </div>
                             </md-tooltip>
+                            
                         </span>
                     </div>
 
@@ -103,10 +114,17 @@
                     <div class="col-md-3" style="display:flex">
                         <span><input type="text" class="form-control adminProjectField" data-ng-model="wikiPageLink"></span>
                         <span>
-                            <img src="/Content/Images/tooltip.png" style="height:55%;">
-                            <md-tooltip id="slider-tooltip" md-direction="top" md-autohide="true">
-                                Mention the URL, If any project metrics related information are maintained in a wiki page. This Link will be available under “Process & Quality Compliance” section.
+                            <img src="/Content/Images/tooltip.png" class="tooltipImg">
+                            <md-tooltip id="slider-tooltip" md-direction="top" class="large" md-autohide="true">
+                                <div class="tooltipDiv">
+                                    <label class="tooltipLabel">
+                                        Mention the URL, If any project metrics related <br>
+                                         information are maintained in a wiki page.<br>
+                                        This Link will be available under “Process & Quality Compliance” .
+                                    </label>
+                                </div>
                             </md-tooltip>
+                            
                         </span>
                     </div>
                 </div>

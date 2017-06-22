@@ -1114,6 +1114,20 @@ md-card {
     font-size: 15px;
 }
 
+.tooltipImg{
+    height: 68%;
+    padding-left: 4px;
+    padding-top: 6px;
+}
+
+.tooltipDiv{
+   margin:0 auto;
+}
+
+.tooltipLabel{
+    line-height:1.5;
+}
+
 @font-face {
     font-family: Roboto;
     src: url('../fonts/Roboto/Roboto-Regular.ttf') format('opentype');
@@ -1134,3 +1148,4 @@ md-card {
     font-weight: normal;
     font-style: normal;
 }
+

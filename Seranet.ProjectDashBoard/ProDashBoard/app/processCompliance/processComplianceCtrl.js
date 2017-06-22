@@ -226,7 +226,7 @@
                 angular.forEach(data, function (value, key) {
 
                     var year = value.Year.toString();
-                    $scope.labels.push(year + "-Q" + value.Quarter);
+                    $scope.labels.push(year + "-H" + value.Quarter);
 
 
                     $scope.data[1][x] = value.Rating;

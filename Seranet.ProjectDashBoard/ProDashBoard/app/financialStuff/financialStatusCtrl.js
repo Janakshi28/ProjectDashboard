@@ -97,7 +97,7 @@
                     angular.forEach(data, function (value, key) {
                         $scope.tempExpectedArray.push(value.ExpectedHours);
                         $scope.tempActualArray.push(value.coveredBillableHours);
-                        $scope.labels.push(value.Year + "-" + value.Month);
+                        $scope.labels.push(value.Year + "-" + value.MonthName.substring(0, 3));
                         $scope.returnedMonthArray.push(value.MonthName);
                         console.log("Month " + value.MonthName);
                     });

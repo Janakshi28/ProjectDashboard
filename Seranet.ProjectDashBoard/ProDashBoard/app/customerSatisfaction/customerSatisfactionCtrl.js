@@ -112,7 +112,7 @@
                         }
 
                         if (x == 0) {
-                            $scope.labels.push(secondaryValue.Year + "-Q" + secondaryValue.Quarter);
+                            $scope.labels.push(secondaryValue.Year + "-H" + secondaryValue.Quarter);
                         }
 
                     });

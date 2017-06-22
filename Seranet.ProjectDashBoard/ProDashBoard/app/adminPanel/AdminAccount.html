@@ -41,8 +41,9 @@
                     <div class="col-md-2">
                         <span>Account Name<span class="mandatory">*</span></span>
                     </div>
-                    <div class="col-md-5">
+                    <div class="col-md-5" style="display: flex;">
                         <span><input type="text" class="form-control adminProjectField" data-ng-disabled="false" data-ng-model="accountName" required></span>
+
                     </div>
 
                     <div class="col-md-2">
@@ -68,27 +69,39 @@
                     <div class="col-md-2">
                         <span>Account Code<span class="mandatory">*</span></span>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-3" style="display:flex">
                         <span><input type="text" class="form-control adminProjectField" data-ng-model="accountCode" required></span>
+
                     </div>
                 </div>
-
                 <div class="row">
-                    <div class="col-md-2">
-                        <br/>
+                    <br />
+                </div>
+                <div class="row">
+                    <div class="col-md-2" style="display:flex">
+                        <br />
                         <span>Jira Project Code(s)</span>
                     </div>
 
-                    <div class="col-md-5">
-                        <br>
-                        <span><input type="text" class="form-control adminProjectField" data-ng-model="allProjectCodes" ></span>
+                    <div class="col-md-3" style="display:flex">
+                        <br />
+                        <span>
+                            <input type="text" class="form-control adminProjectField" data-ng-model="allProjectCodes">
+                        </span>
                         <!--<span><md-checkbox class="md-warn md-align-top-left"  data-ng-click="setselectedAccountAvailability()" id="selectedAccountCheck" data-ng-model="isAccountInactive" label="md-checkbox" data-ng-disabled="accountDisabled">Inactive Account</md-checkbox></span>-->
+                        <span>
+                            <img src="/Content/Images/tooltip.png" style="height:55%;">
+                            <md-tooltip id="slider-tooltip" md-direction="top" md-autohide="true">
+                                Provide the Codes of the Billable projects in Jira. If there are multiple billable project codes, it should be separated by comma ‘,’
+                                (ex : CD,CX)
+                            </md-tooltip>
+                        </span>
                     </div>
 
-
-                    <div class="col-md-2">
+                    <div class="col-md-4">
 
                     </div>
+
                     <div class="col-md-3">
                         <br>
                         <span><button class="btn btn-secondary adminProjectField mainBut" data-ng-click="createNewProject()">Create New Project</button></span>
@@ -105,7 +118,7 @@
                     </div>
 
                     <div class="col-md-2">
-                        
+
                     </div>
 
                     <div class="col-md-3">

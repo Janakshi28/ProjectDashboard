@@ -48,7 +48,7 @@
         $scope.cusSatHover = [["0 - 2", "Low", 'teamlev0'], ["3 - 4", "Medium", 'teamlev1'], [" 4 Above", "Good", 'teamlev2'], ["Level 3", "Excellent"]];
         $scope.processComplianceHover = [["Above 0.75", "Low", 'teamlev0'], ["0.5 – 0.75", "Medium", 'teamlev1'], ["0 – 0.5", "Good", 'teamlev2'], ["Level 3", "Excellent"]];
         $scope.financialHover = [["0% - 79%", "Low", 'teamlev0'], ["80% - 99%", "Medium", 'teamlev1'], ["100%", "Good", 'teamlev2'], ["Level 3", "Excellent"]];
-        $scope.riskHover = [["4 - 12", "Low", 'teamlev0'], ["1 - 3", "Medium", 'teamlev1'], ["0", "Good", 'teamlev2']];
+        $scope.riskHover = [["8 - 12", "Low", 'teamlev0'], ["3 - 7", "Medium", 'teamlev1'], ["0-3", "Good", 'teamlev2']];
         //$scope.teamShow = false;
         $scope.myInterval = 3000;
         //$scope.slides = [];
@@ -353,7 +353,7 @@
                     $scope.customerSatData = [$scope.cusVal, (5 - $scope.cusVal).toFixed(2)];
                     $scope.cusYear = $scope.cusSatData[0];
                     $scope.cusQuarter = $scope.cusSatData[1];
-                    $scope.cusDuration = $scope.cusYear + " - Q" + $scope.cusQuarter;
+                    $scope.cusDuration = $scope.cusYear + "-H" + $scope.cusQuarter;
                     $scope.cusPending = $scope.cusSatData[3];
                     if ($scope.cusVal < 3 & $scope.cusVal >= 0) {
                         $scope.customerSatClass = 'teamlev0';
@@ -403,9 +403,9 @@
                     
                     angular.forEach(data, function (image, key) {
                         var tempReturnArray = ['teamlev2', image];
-                        if (image.riskValue <= 12 & image.riskValue >= 4) {
+                        if (image.riskValue <= 12 & image.riskValue >= 8) {
                             tempReturnArray[0] = 'teamlev0';
-                        } else if (image.riskValue < 4 & image.riskValue >= 1) {
+                        } else if (image.riskValue < 8 & image.riskValue >= 3) {
                             tempReturnArray[0] = 'teamlev1';
                         } else {
                             tempReturnArray[0] = 'teamlev2';
@@ -486,7 +486,7 @@
                     $scope.processComVal = $scope.processComData[2].toFixed(2);
                     $scope.processComYear = $scope.processComData[0];
                     $scope.processComQuarter = $scope.processComData[1];
-                    $scope.processComDuration = $scope.processComYear + " - Q" + $scope.processComQuarter;
+                    $scope.processComDuration = $scope.processComYear + " - H" + $scope.processComQuarter;
                     $scope.processComPending = $scope.processComData[3];
 
                     if ($scope.processComVal >= 0.75) {
@@ -527,7 +527,7 @@
                 if (angular.isObject(data)) {
                     $scope.financialSatShow = true;
                     $scope.fval = data.coveredBillableHours + "/" + data.ExpectedHours;
-                    $scope.fDuration = data.Year + " - Q" + data.Quarter + " - " + data.MonthName;
+                    $scope.fDuration = data.Year + " - H" + data.Quarter + " - " + data.MonthName;
                     var percentageOfBillableHours = ((data.coveredBillableHours * 100) / data.ExpectedHours).toFixed(2);
                     if (percentageOfBillableHours ==100) {
                         $scope.financialClass = 'teamlev2';

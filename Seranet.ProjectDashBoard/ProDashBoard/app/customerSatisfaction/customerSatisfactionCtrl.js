@@ -37,18 +37,14 @@
             $scope.data = $scope.keepData;
             var receivedProject = null;
             angular.forEach($scope.projects, function (value, key) {
-                console.log($scope.initialProjectId + "    " + value.Id);
                 if ($scope.initialProjectId == value.Id) {
-                    console.log("fdfdfd");
                     receivedProject = value;
                     $scope.projectCombo = angular.toJson(value);
-                    console.log(receivedProject);
                 }
 
             });
             //var receivedProject = JSON.parse($scope.projectCombo);
             
-            console.log(receivedProject);
             $scope.subProjectName = " - " + receivedProject.Name;
             $scope.cusResults = false;
             $scope.quarter1 = 'qnone';
@@ -103,7 +99,6 @@
                 angular.forEach(data, function (value, key) {
                     $scope.tempArray = [];
                     angular.forEach(value, function (secondaryValue, key) {
-                        console.log("Test " + secondaryValue.Rating);
                         if (secondaryValue.Rating == 0) {
                             $scope.tempArray.push(null);
 
@@ -120,8 +115,7 @@
                     $scope.data.push($scope.tempArray);
                     //$scope.testArray = [null, 1, 2];
                     // $scope.data.push($scope.testArray);
-                    console.log("Cus " + $scope.labels.toString());
-
+                  
                 });
                 $scope.myData = $scope.data;
                 initializeChartData();
@@ -152,7 +146,6 @@
                     angular.forEach(data, function (value, key) {
                         $scope.tempArray = [];
                         angular.forEach(value, function (secondaryValue, key) {
-                            console.log("Test " + secondaryValue.Rating);
                             if (secondaryValue.Rating == 0) {
                                 $scope.tempArray.push(null);
 
@@ -169,8 +162,7 @@
                         $scope.data.push($scope.tempArray);
                         //$scope.testArray = [null, 1, 2];
                         // $scope.data.push($scope.testArray);
-                        console.log("Cus " + $scope.labels.toString());
-
+                      
                     });
                     $scope.myData = $scope.data;
                 } else {
@@ -210,7 +202,6 @@
         $scope.onClick = function (points, evt) {
             if (points.length == 1) {
                 var receivedProject = JSON.parse($scope.projectCombo);
-                console.log("gfg " + points[0].value + " " + points[0].label);
                 $scope.clickedLabel = points[0].label;
                 $scope.clickedYear = $scope.clickedLabel.split('-')[0];
                 $scope.clickedQuarter = $scope.clickedLabel.split('-')[1].toString();
@@ -248,8 +239,6 @@
             $scope.series = [];
             $http.get('api/Project/getSelectedAccountProjects/' + accountId).success(function (data) {
                 $scope.projects = data;
-                console.log("dsdsds--------------------dsdsdsd");
-                console.log($scope.projects)
                 
                 if (data != "" && data.length == 1) {
                     
@@ -259,7 +248,6 @@
 
 
                 angular.forEach($scope.projects, function (val, key) {
-                    console.log("fdf " + val.Name);
                     $scope.series.push(val.Name);
                 });
                 
@@ -279,7 +267,6 @@
             
             
             if ($scope.projectCombo == 'All') {
-                console.log($scope.projectCombo);
                 $scope.data = $scope.myData;
                 $scope.subProjectName = "";
                 loadsubProjects($scope.key1);
@@ -337,7 +324,6 @@
         $scope.q1Click = function () {
             $scope.quarter1 = 'q1';
             $scope.quarter2 = 'qnone';
-            console.log("LOG " + checkFieldsValidation());
             if (checkFieldsValidation()) {
                 $scope.cusResults = true;
                 var receivedProject = JSON.parse($scope.projectCombo);
@@ -364,6 +350,28 @@
                 toaster.pop('warning', "Notificaton", "Please select a Project");
                 
             }
+        }
+
+        $scope.yearComboChange = function () {
+          let selectedQuarter = 0;
+          if (checkFieldsValidation()) {
+            $scope.cusResults = true;
+            var receivedProject = JSON.parse($scope.projectCombo);
+            if ($scope.quarter1 === 'q1') {
+              selectedQuarter = 1;
+            } else if ($scope.quarter2 === 'q1') {
+              selectedQuarter = 2;
+            }
+            if (selectedQuarter != 0) {
+              fillCustomerSatisfactionResults($scope.key1, receivedProject.Id, $scope.yearCombo, selectedQuarter);
+            }
+          } else {
+            $scope.quarter1 = 'qnone';
+            $scope.quarter2 = 'qnone';
+            $scope.cusResults = false;
+            toaster.pop('warning', "Notificaton", "Please select a Project");
+
+          }
         }
         
 
@@ -427,7 +435,6 @@
 
         //Fill table with customer satisfaction results
         function fillCustomerSatisfactionResults(accountId, projectId, year, quarter) {
-            console.log("DATA "+accountId + " " + projectId + " " + year + " " + quarter);
             $http.get('api/CustomerSatisfaction/getSelectedProjectResults/' + accountId + '/ ' + projectId + '/ ' + year + '/ ' + quarter).success(function (data) {
                 $scope.CusResults = data;
                 if (data == "") {
@@ -438,10 +445,7 @@
                     $scope.cusResults = true;
 
                     $scope.CusTopResult = $scope.CusResults[1];
-                    
-
-                    console.log($scope.CusTopResult.Year + " " + $scope.CusTopResult.Quarter);
-
+                  
                     $scope.yearCombo = $scope.CusTopResult.Year;
                     loadSelectedProjectSummary(accountId, projectId, $scope.CusTopResult.Year, $scope.CusTopResult.Quarter);
                     if ($scope.CusTopResult.Quarter == 1) {

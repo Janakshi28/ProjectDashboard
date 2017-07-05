@@ -58,12 +58,10 @@
             $http.get('api/ProcessCompliance/getSelectedProjectResults/' + accountId + '/' + projectId + '/' + year + '/' + quarter).success(function (data) {
                 $scope.Results = data;
                 $scope.ChangedResults = chunk(data);
-                console.log("ch " + chunk(data)[1] + " " + chunk(data)[3] + " " + chunk(data)[0]);
                 if (data != '') {
                     $scope.pcShow = true;
                     setInteractions($scope.Results[0].Year, $scope.Results[0].Quarter);
                     $scope.chunkedData = chunk($scope.Results, 3);
-                    console.log("Chunk " + $scope.chunkedData);
                     getSelectedProjectDurationSummary(accountId, projectId, year, quarter);
                 } else {
                     toaster.pop('warning', "Notificaton", "No Results Found");
@@ -85,7 +83,6 @@
                 $scope.projects = data;
                 
                 if (data.length > 0) {
-                    console.log(data[0].Id);
                     if ($scope.initialSelectedProjectId != 0) {
                         angular.forEach(data, function (value, key) {
                             if (value.Id == $scope.initialSelectedProjectId) {
@@ -115,7 +112,6 @@
 
         //Change selected quarter colour
         function setInteractions(year, quarter) {
-            console.log(year);
             $scope.yearCombo = year;
             if (quarter == 1) {
                 $scope.quarter1 = 'q1';
@@ -189,6 +185,19 @@
             loadSelectedProjectResults($scope.key1, receivedProject.Id, $scope.yearCombo, 2);
         }
 
+        $scope.yearComboChange = function () {
+          let selectedQuarter = 0;
+          if ($scope.quarter1 === 'q1') {
+            selectedQuarter = 1;
+          } else if ($scope.quarter2 === 'q1') {
+            selectedQuarter = 2;
+          }
+          if(selectedQuarter!=0){
+          var receivedProject = JSON.parse($scope.projectCombo);
+          loadSelectedProjectResults($scope.key1, receivedProject.Id, $scope.yearCombo, selectedQuarter);
+          }
+          }
+
 
         //Load subproject summary data to the chart
         function loadProjectSummary() {
@@ -203,11 +212,9 @@
             var x = 0;
             $http.get('api/ProcessCompliance/getSelectedProjectSummaries/' + $scope.key1 + '/' + receivedProject.Id).success(function (data) {
                 $scope.selectedSummaries = data;
-                console.log(data);
                 if (data != '') {
                     $scope.pcShow = true;
                     
-                    console.log("df " + data[$scope.selectedSummaries.length - 1].Year + " " + 1);
                     $scope.IsoQuality = data[$scope.selectedSummaries.length - 1].ProcessVersion;
                     if ($scope.initialSelectedYear != 0 && $scope.initialSelectedQuarter != 0) {
                         setInteractions($scope.initialSelectedYear, $scope.initialSelectedYear);
@@ -272,7 +279,6 @@
             $scope.initialSelectedYear = 0;
             $scope.initialSelectedQuarter = 0;
             var receivedProject = JSON.parse($scope.projectCombo);
-            console.log(receivedProject.Name);
             $scope.subProjectName = receivedProject.Name;
             loadProjectSummary();
             var receivedProject = JSON.parse($scope.projectCombo);
@@ -282,8 +288,7 @@
 
         //declare chart click event
         $scope.pcChartClick = function (points, evt) {
-            console.log(points);
-
+          
             $scope.clickedLabel = points[0].label;
             $scope.clickedYear = $scope.clickedLabel.split('-')[0];
             $scope.clickedQuarter = $scope.clickedLabel.split('-')[1].toString();
@@ -297,7 +302,6 @@
         function loadCommonData(projectId) {
             $http.get('api/CommonData/' + projectId).success(function (data) {
                 $scope.CommonData = data;
-                console.log("CommonData " + $scope.CommonData.ConfluencePageId);
             })
                 .error(function () {
                     $scope.error = "An Error has occured while loading posts!";

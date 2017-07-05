@@ -67,10 +67,6 @@
             //api/FinancialSummary/getSummaryDataForChart/{AccountId}/{Year}/{Quarter}
             $http.get('api/FinancialSummary/getSummaryDataForChart/' + accountId+'/'+year+'/'+quarter).success(function (data) {
                 $scope.chartData = data;
-
-                console.log("------------");
-                console.log(data);
-                console.log(data[0]);
                 $scope.series = [];
                 $scope.series[0] = 'Expected';
                 $scope.series[1] = 'Actual';
@@ -99,7 +95,6 @@
                         $scope.tempActualArray.push(value.coveredBillableHours);
                         $scope.labels.push(value.Year + "-" + value.MonthName.substring(0, 3));
                         $scope.returnedMonthArray.push(value.MonthName);
-                        console.log("Month " + value.MonthName);
                     });
                     //$scope.returnedMonthArray.push("Allocation");
                     //$scope.returnedMonthArray.push("Reported");
@@ -107,7 +102,6 @@
                     $scope.data.push($scope.tempExpectedArray);
                     $scope.data.push($scope.tempActualArray);
                 }
-                console.log("ChartDataLength " + data.length);
                 
                 var array2 = [];
                 
@@ -182,6 +176,20 @@
             loadChartData($scope.returnedAccountId, $scope.yearCombo, 2);
             getSelectedFinancialResults($scope.returnedAccountId, $scope.yearCombo, 2);
         }
+
+        $scope.yearComboChange = function () {
+          let selectedQuarter = 0;
+          if ($scope.quarter1 === 'q1') {
+            selectedQuarter = 1;
+          } else if ($scope.quarter2 === 'q1') {
+            selectedQuarter = 2;
+          }
+          if (selectedQuarter != 0) {
+            loadChartData($scope.returnedAccountId, $scope.yearCombo, selectedQuarter);
+            getSelectedFinancialResults($scope.returnedAccountId, $scope.yearCombo, selectedQuarter);
+          }
+        }
+
         $scope.tableData = null;
         $scope.endRowItemIndexes = [];
         function getSelectedFinancialResults(accountId, year, quarter) {
@@ -194,14 +202,12 @@
             $scope.totalnonBillableCal = 0;
             $scope.totalhourlyBillableCal = 0;
             $http.get('api/FinancialResults/getSelectedFinancialResults/' + year + '/' + quarter + '/' + accountId).success(function (data) {
-                console.log("FinancialData " + data.length);
                 if (data.length != 0) {
                     $scope.tableData = data;
 
                     $scope.financialResults = true;
 
                     for (var x = 0; x < $scope.tableData[0].length; x++) {
-                        console.log(x);
                         $scope.endRowItemIndexes.push(x);
                     }
 
@@ -223,7 +229,6 @@
             for (var x = 0; x < $scope.tableData.length; x++) {
                 
                 if ($scope.tableData[x][endrowItemValue].BillableType == 2) {
-                    console.log("b "+$scope.tableData[x][endrowItemValue].BillableType);
                     itemValue += $scope.tableData[x][endrowItemValue].ConsiderableHours;
                     allocatedValue += $scope.tableData[x][endrowItemValue].AllocatedHours;
                 }
@@ -235,10 +240,7 @@
             allocatedValue=$scope.tempEndrowItemAllocatedValue+allocatedValue;
             $scope.tempEndrowItemValue = itemValue;
             $scope.tempEndrowItemAllocatedValue = allocatedValue;
-            console.log(itemValue+"  Value   "+allocatedValue);
-            //if (itemValue > allocatedValue) {
-            //    itemValue = allocatedValue;
-            //}
+
             return itemValue.toFixed(2);
         }
         
@@ -275,7 +277,6 @@
                     extralagCount = extralagCount + value.ExtraOrLag;
                 }
             });
-            console.log("LOG " + extralagCount);
                 $scope.totalextraorlagCal += extralagCount;
             return extralagCount;
         }

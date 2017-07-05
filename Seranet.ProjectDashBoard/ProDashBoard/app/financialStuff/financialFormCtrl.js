@@ -23,7 +23,6 @@
 
             $http.get('api/FinancialData/getDataFromTimeReports/' + year + '/' + month + '/' + accountId).success(function (data) {
                 $scope.timeReportData = data.sendingData;
-                console.log(data.financialDataMissingMembers);
                 if ($scope.timeReportData.length != 0) {
                     if (data.financialDataMissingMembers != "" && data.financialDataMissingMembers!=null){
                         $scope.timeReportDataMissingMembers = data.financialDataMissingMembers;
@@ -53,7 +52,6 @@
             $scope.monthCombo =JSON.stringify(currentMonth-1);
             $scope.yearCombo1 = JSON.parse(currentYear);
             $scope.selectedYear = currentYear;
-            console.log(currentYear + " " + currentMonth + " " + $scope.yearCombo1);
         }
 
         function loadAccounts() {
@@ -124,21 +122,17 @@
         //api/FinancialSummary/getFinalMonthSummary/{AcountId}/{Year}/{Quarter}
         function checkSummaryAvailability(AccountId, month, Year, Quarter, returnData,ev) {
             $http.get('api/FinancialSummary/getFinalMonthSummary/'+AccountId+'/'+Year+'/'+Quarter).success(function (data) {
-                console.log(angular.isObject(data));
                 if (angular.isObject(data)) {
                     
                     var selectedDate = new Date("'" + month + "/01/" + Year + "" + "'");
                     var pastDate = new Date(selectedDate.setMonth(selectedDate.getMonth() - 1));
-                    console.log("PastDate " + (pastDate.getMonth() + 1) + " " + pastDate.getFullYear());
                     var returnedYear = data.Year;
                     var returnedMonth = data.Month;
 
-                    console.log(returnedMonth + " " + returnedYear + " " + data.ExpectedHours);
                     if (returnedYear == pastDate.getFullYear()) {
                         if ((pastDate.getMonth() + 1) == data.Month) {
                             saveData(returnData);
                         } else {
-                            console.log("DATA "+(returnedYear == Year & returnedMonth == month) + " " + returnedYear+" "+ Year +" "+ returnedMonth +" "+ month);
                             if (returnedYear == Year & returnedMonth == month) {
 
                                 $mdDialog.show(createConfirmDialog('Time Report Data Entering', 'Do you want to update the existing time report data for the latest month?', ev)).then(function () {
@@ -228,7 +222,6 @@
 
                    // }
                 }
-                console.log("Exists" +$scope.isExists);
             }).error(function () {
 
             });

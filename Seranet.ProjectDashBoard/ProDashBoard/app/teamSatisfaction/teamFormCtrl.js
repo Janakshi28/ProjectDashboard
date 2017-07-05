@@ -50,9 +50,7 @@
             $scope.selectedAccountId = $scope.accountCombo;
 
             $http.get('api/EmployeeProjects/getEmployeeAccountProjects/' + $scope.selectedAccountId + '/' + $scope.employee.Id).success(function (data) {
-                console.log("SelectedEmp " + data.length);
                 $scope.projects = data;
-                
             })
         .error(function () {
             $scope.error = "An Error has occured while loading posts!";
@@ -76,7 +74,6 @@
                 $scope.quaterArray.push(4);
                 
                     for (var x = 0; x < $scope.employeeSummaries.length; x++) {
-                        console.log("EmployeeSummary " + $scope.employeeSummaries[x].Quarter);
                         $scope.quaterArray.splice(($scope.quaterArray.indexOf($scope.employeeSummaries[x].Quarter)),1);
                     }
                 
@@ -128,12 +125,9 @@
             for (var y = 0; y < $scope.Questions.length; y++) {
                 
                 $scope.sendingData = $scope.sendingData + "~" + $scope.employee.Id + '|' + $scope.accountCombo + '|' + 1 + '|' + $scope.yearCombo + '|' + $scope.quarterCombo + '|' + $scope.Questions[y].Id + '|' + $scope.rateArray[$scope.Questions[y].Id] + '|' + $scope.commentArray[$scope.Questions[y].Id]
-                console.log($scope.rateArray[$scope.Questions[y].Id]);
                 if (typeof $scope.rateArray[$scope.Questions[y].Id] == "undefined") {
-                    console.log("ERRR");
                     $scope.rateArray[$scope.Questions[y].Id] = -1;
                 }
-                console.log($scope.Questions.length + "--------" + $scope.employee.Id + '/' + $scope.accountCombo + '/' + 1 + '/' + $scope.yearCombo + '/' + $scope.quarterCombo + '/' + $scope.Questions[y].QuestionType + '/' +  $scope.rateArray[$scope.Questions[y].Id] + '/' + $scope.commentArray[$scope.Questions[y].Id]);
             }
 
 

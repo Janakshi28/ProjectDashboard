@@ -31,7 +31,6 @@
             //.targetEvent(ev)
             //);
 
-            console.log('opening pop up ' + employee);
             var modalInstance = $modal.open({
                 templateUrl: 'app/teamSatisfaction/PopupPage.html',
                 controller: 'popupController',
@@ -289,6 +288,22 @@
             setTableData($stateParams.id, $scope.yearCombo, 4);
         };
 
+        $scope.yearComboChange = function () {
+          let selecedQuarter = 0;
+          if ($scope.quarter1 === 'q1') {
+            selecedQuarter=1;
+          } else if ($scope.quarter2 === 'q1') {
+            selecedQuarter = 2;
+          } else if ($scope.quarter3 === 'q1') {
+            selecedQuarter = 3;
+          } else if ($scope.quarter4 === 'q1') {
+            selecedQuarter = 4;
+          }
+          if (selecedQuarter != 0) {
+            setTableData($stateParams.id, $scope.yearCombo, selecedQuarter);
+          }
+        }
+
         //Load teamsatisfactionresults to table 
         function setTableData(projectId, year, month) {
             $scope.sendingProjectId = projectId;
@@ -325,7 +340,6 @@
                 $scope.selectedSummary = data;
                 if (data != null) {
                     $scope.overall = $scope.selectedSummary.Rating
-                    console.log("Overrall " + $scope.overall);
                 }
             })
 
@@ -342,8 +356,6 @@
         function loadEmpAverages(accountId, year, quarter) {
             $http.get('api/TeamSatisfactionEmployeeSummary/' + accountId + '/' + year + '/' + quarter).success(function (data) {
                 $scope.empAverages = data;
-                console.log(data);
-
             })
 
                .error(function () {
@@ -411,7 +423,6 @@
                 } else {
                     $scope.sh1 = true;
                     var arr = [];
-                    console.log("LELELE " + $scope.selectedPro[0].length);
                     for (var i = 0; i < ($scope.selectedPro[0].length - 1) ; i++) {
                         
                         arr.push($scope.selectedPro[0][i][0]);
@@ -457,7 +468,6 @@
         $scope.sh1 = true;
 
         $scope.formClick = function () {
-            console.log('opening pop up ');
             var modalInstance = $modal.open({
                 templateUrl: 'app/teamSatisfaction/TeamSatisfactionForm.html',
                 controller: 'teamFormController',
@@ -467,12 +477,12 @@
         }
 
         $scope.proNameChange = function (key1) {
-            $scope.empAverages = [];
+          $scope.empAverages = [];
+          $stateParams.id = $scope.key1;
             $scope.quarter1 = 'qnone';
             $scope.quarter2 = 'qnone';
             $scope.quarter3 = 'qnone';
             $scope.quarter4 = 'qnone';
-            console.log("QQQ " + $scope.key1);
             localStorage.setItem('account',$scope.key1);
             getProjectSummaries($scope.key1);
             getSelectedResults($scope.key1);

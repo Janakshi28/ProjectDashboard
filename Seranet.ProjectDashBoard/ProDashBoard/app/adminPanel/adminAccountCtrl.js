@@ -199,9 +199,7 @@
         function EditData() {
             var checkboxes = $("#selectedAccountCheck");
             var newAccount = { 'Id': $scope.selectedAccount, 'AccountName': $scope.accountName, 'AccCode': $scope.accountCode, 'Availability': !$scope.isAccountInactive, 'AccountOwner': $scope.accountOwner, 'Description': $scope.accountDescription, 'AllProjectCodes': $scope.allProjectCodes };
-            console.log(newAccount);
-
-
+          
             //Update Account Details
             $http.put('api/Account/update', newAccount).success(function (data) {
 

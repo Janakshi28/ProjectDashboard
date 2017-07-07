@@ -38,7 +38,6 @@
 
         function loadActiveProjects() {
             $http.get('api/Project/getAdminPanelActiveProjects').success(function (data) {
-                console.log(data[0]);
                 if (data.length != 0) {
                     loadClickedProjectData(data[0]);
                 }

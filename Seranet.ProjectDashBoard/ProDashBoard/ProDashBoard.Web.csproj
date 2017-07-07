@@ -337,8 +337,12 @@
     <Content Include="app\adminPanel\AdminProject.html" />
     <Content Include="app\adminPanel\adminProjectCtrl.js" />
     <Content Include="app\adminPanel\AdminSettings.html" />
-    <Content Include="app\adminPanel\adminÀccountCtrl.js" />
+    <Content Include="app\adminPanel\adminAccountCtrl.js" />
     <Content Include="app\app.js" />
+    <Content Include="app\AuthHandler\AuthController.html" />
+    <Content Include="app\AuthHandler\AuthController.js" />
+    <Content Include="app\CooperateDashboard\coHome.html" />
+    <Content Include="app\CooperateDashboard\coHomeController.js" />
     <Content Include="app\customerSatisfaction\CustomerSatisfaction.html" />
     <Content Include="app\customerSatisfaction\customerSatisfactionCtrl.js" />
     <Content Include="app\error\errorCtrl.js" />
@@ -550,6 +554,7 @@
     <Content Include="fonts\Roboto\Roboto-Regular.ttf" />
     <Content Include="fonts\Roboto\Roboto-Thin.ttf" />
     <Content Include="fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\NewProDashboard.pubxml" />
     <None Include="Properties\PublishProfiles\testifier.pubxml">
       <SubType>Designer</SubType>
@@ -1415,7 +1420,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>

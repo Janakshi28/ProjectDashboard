@@ -574,6 +574,9 @@
             $http.get("api/Authorization/getAdminOrTeamLeadRights/" + $scope.myVal).success(function (data) {
                 $scope.isAdmin = data.split('-')[0].toLowerCase() == 'true';
                 $scope.isTeamLead = data.split('-')[1].toLowerCase() == 'true';
+                //if ($scope.isAdmin) {
+                //    window.location.href = "#/coHome" ;
+                //}
                 
             })
             .error(function () {
@@ -611,6 +614,7 @@
                     $scope.financialSatShow = false;
                 }
                 $scope.projects = data;
+                console.log(data + "      dataaaa")
                 $scope.key1 =JSON.parse($scope.userAccounts[0][1]);
                 console.log(localStorage.getItem('account') +"      LOCALSTORAGE");
                 if (localStorage.getItem('account') != null) {

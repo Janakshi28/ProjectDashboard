@@ -7,10 +7,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 
     $stateProvider.state('main', {
-        url: '/',
+        url: '/home',
         templateUrl: 'app/home/Home.html',
-
-
+        //SDAD
     })
     .state('teamSatisfaction', {
         url: '/teamSatisfaction/:id',
@@ -21,7 +20,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         .state('teamForm', {
             url: '/teamForm/',
             templateUrl: 'app/teamSatisfaction/TeamSatisfactionForm.html',
-
+             
 
         })
         .state('customerSatisfaction', {
@@ -82,8 +81,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         templateUrl: 'app/financialStuff/FinancialStatus.html',
 
 
-    });
+    })
+    .state('coHome', {
+        url: '/coHome',
+        templateUrl: 'app/CooperateDashboard/coHome.html',
 
+
+    })
+    .state('/', {
+        url: '/',
+        templateUrl: 'app/AuthHandler/AuthController.html',
+
+
+    });
     
 });
 

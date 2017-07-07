@@ -70,7 +70,12 @@ namespace ProDashBoard
                     "~/app/adminPanel/adminProjectCtrl.js",
                     "~/app/adminPanel/adminEmployeesCtrl.js",
                     "~/app/financialStuff/financialFormCtrl.js",
-                    "~/app/financialStuff/financialStatusCtrl.js"
+                    "~/app/financialStuff/financialStatusCtrl.js",
+
+                    //Coperate Dashboard
+
+                    "~/app/CooperateDashboard/coHomeController.js",
+                    "~/app/AuthHandler/AuthController.js"
                     ));
 
         }

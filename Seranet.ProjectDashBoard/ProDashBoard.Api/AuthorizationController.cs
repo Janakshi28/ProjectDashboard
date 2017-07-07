@@ -39,6 +39,12 @@ namespace ProDashBoard.Api
             return (authRepo.getAdminRights()+"-"+authRepo.getTeamLeadRights(accountId));
         }
 
+        [HttpGet, Route("api/Authorization/getAdminRights")]
+        public bool getAdminRights()
+        {
+            return (authRepo.getAdminRights());
+        }
+
 
     }
 }

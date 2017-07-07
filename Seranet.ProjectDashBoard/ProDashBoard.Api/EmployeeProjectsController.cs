@@ -34,11 +34,15 @@ namespace ProDashBoard.Api
             List<Object[]> returnData = new List<object[]>();
             if (authorized)
             {
+                
                 returnData = accountRepo.getAllAccounts();
+                //returnData.Add(new object[] { "200", "Coperate View"});
+                //Debug.WriteLine("dsaasdasdsadsadsadsadsadasdasdasdas     " + returnData.ToString());
+
             }
             else
             {
-                returnData =repo.getSelectedEmployeeAccounts(teamMemberRepo.getSelectedEmployee(authRepo.getUsername()).Id);
+                returnData = repo.getSelectedEmployeeAccounts(teamMemberRepo.getSelectedEmployee(authRepo.getUsername()).Id);
             }
             return returnData;
         }

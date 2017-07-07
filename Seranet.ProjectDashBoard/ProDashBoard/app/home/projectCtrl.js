@@ -152,8 +152,7 @@
             //Load Spec widget data
             $http.get('api/Spec/getSpecLevel/' + $scope.myVal).success(function (data) {
                 $scope.specLevelData = data;
-                console.log("Spec "+data[0]+" "+data[1]);
-
+              
                 if ($scope.specLevelData[0] != -1 & $scope.specLevelData[1] != -1) {
                     $scope.specShow = true;
                     $scope.title = $scope.specLevelData[1];
@@ -221,7 +220,6 @@
                 $scope.selectedPro = data;
 
                 $scope.projectName = $scope.selectedPro.AccountName;
-                console.log("acc " + $scope.projectName);
                 $rootScope.project = $scope.projectName;
                 
                 
@@ -244,8 +242,6 @@
                     $scope.teamSat = $scope.selectedSummary.Rating.toFixed(2);
                     $scope.teamDuration = $scope.selectedSummary.Year + " - Q" + $scope.selectedSummary.Quarter;
                     $scope.teamSatChartData = [$scope.teamSat, (10 - $scope.teamSat).toFixed(2)];
-
-                    console.log($scope.selectedSummary.Year + " " + $scope.selectedSummary.Quarter);
 
                     if ($scope.selectedSummary.Rating < 5 & $scope.selectedSummary.Rating >= 0) {
                         $scope.teamClass = 'teamlev0';
@@ -290,8 +286,6 @@
             $scope.cusSatDataValue = [];
             $http.get('api/CustomerSatisfaction/getCusSatWidgetData/' + $scope.myVal).success(function (data) {
                 $scope.cusSatWidgetData = data;
-                
-                console.log(data);
                 
                 if (data.length != 0) {
                     $scope.customerSatShow = true;
@@ -395,7 +389,6 @@
             $http.get('api/RiskManagement/getTotalRisksForSelectedAccountSubProjects/' + $scope.myVal).success(function (data) {
                 $scope.riskDataVales = [];
                 $scope.riskData = null;
-                console.log(data);
                 
                 if (data.length != 0) {
                     
@@ -420,7 +413,6 @@
                 }
                 $scope.riskDivVal = 100 / $scope.riskDataVales.length;
                 $scope.riskDivWidth = $scope.riskDivVal + "%";
-                console.log("RISKVALUE    " + $scope.riskDivWidth);
                 $scope.loading1 = false;
                 
             })
@@ -479,7 +471,6 @@
             $scope.processComData = "";
             $http.get('api/ProcessCompliance/getProcessComplianceWidgetDetails/' + $scope.myVal).success(function (data) {
                 $scope.processComData = data;
-                console.log(data + " Proce  " + ($scope.processComData != null));
                 if ($scope.processComData != null && (angular.toJson($scope.processComData[0]) != 'null')) {
                     $scope.processComClass = 'processVal';
                     $scope.processComplianceShow = true;
@@ -588,7 +579,6 @@
         $scope.loggedInUserId;
         function getEmployee(username) {
             $http.get('api/TeamMembers/' + username).success(function (data) {
-                console.log(data);
                 if (data != null | data != "") {
                     $scope.employee = data;
                     $scope.LoggedInUserName = "Seranet / "+data.MemberName;
@@ -616,7 +606,6 @@
                 $scope.projects = data;
                 console.log(data + "      dataaaa")
                 $scope.key1 =JSON.parse($scope.userAccounts[0][1]);
-                console.log(localStorage.getItem('account') +"      LOCALSTORAGE");
                 if (localStorage.getItem('account') != null) {
                     $scope.proId = JSON.parse(localStorage.getItem('account'));
                     $scope.key1 = JSON.parse(localStorage.getItem('account'));

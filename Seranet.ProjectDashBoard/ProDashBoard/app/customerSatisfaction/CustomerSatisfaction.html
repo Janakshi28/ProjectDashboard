@@ -60,7 +60,7 @@
                         <span id="labelName"><b>Customer Survey Result Calculator</b></span>
                     </div>
                     <div class="col-md-6">
-                        <select data-ng-model="yearCombo" class="form-control field">
+                        <select data-ng-model="yearCombo" class="form-control field" data-ng-change="yearComboChange()">
                             <option data-ng-repeat="x in yearArray" value={{x}}>{{x}}</option>
                         </select>
                         <input type="button" value="1st Half" data-ng-model="q1" data-ng-class="quarter1" data-ng-click="q1Click()" style="width:80px;margin-left:15px;" class="btn btn-secondary" />

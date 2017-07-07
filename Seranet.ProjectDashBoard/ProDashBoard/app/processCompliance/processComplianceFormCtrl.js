@@ -53,7 +53,6 @@
         //Declare key pressed action for rating text field (validate the input as a numeric value)
         $scope.filterValue = function ($event) {
             var val = String.fromCharCode($event.keyCode);
-            console.log(val == '.');
             if (val == '.') {
             } else if (val != '.') {
                 if (!IsNumeric1(String.fromCharCode($event.keyCode))) {
@@ -124,7 +123,6 @@
 
             //Load valid quarters to the quarterCombo 
             $http.get('api/ProcessCompliance/checkSummaryAvailabilityForYear/' + selectedProject.Id + '/' + $scope.yearCombo).success(function (data) {
-                console.log("Checked " + data);
                 angular.forEach(data, function (value, key) {
                     $scope.quaterArray.splice(($scope.quaterArray.indexOf(value.Quarter)), 1);
                 });

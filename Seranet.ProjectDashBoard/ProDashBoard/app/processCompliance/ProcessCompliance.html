@@ -56,7 +56,7 @@
                     <span id="labelName"><b>Quality Parameters as Per {{IsoQuality}} </b></span>
                 </div>
                 <div class="col-md-6" style="display:inline-block;">
-                    <select data-ng-model="yearCombo" class="form-control field" style="margin-left: -5px;"><option data-ng-repeat="x in yearArray" value={{x}}>{{x}}</option></select>
+                    <select data-ng-model="yearCombo" class="form-control field" style="margin-left: -5px;" data-ng-change="yearComboChange()"><option data-ng-repeat="x in yearArray" value={{x}}>{{x}}</option></select>
                     <input type="button" value="1st Half" data-ng-model="q1" data-ng-class="quarter1" data-ng-click="q1Click()" style="width:80px;margin-left:15px;" class="btn btn-secondary" />
                     <input type="button" value="2nd Half" data-ng-model="q2" data-ng-class="quarter2" data-ng-click="q2Click()" style="width:80px;margin-left:15px;" class="btn btn-secondary" />
                     <select data-ng-model="projectCombo" class="form-control field" style="margin-left:60px;" data-ng-change="subProjectChange()">

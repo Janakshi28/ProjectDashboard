@@ -29,7 +29,8 @@
                 console.log(isAdmin);
                 if (isAdmin) {
                     console.log("admin");
-                    window.location.replace("#/coHome");
+                    //window.location.replace("#/coHome");
+                    window.location.replace("#/home");
                 } else {
                     console.log("not an admin");
                     window.location.replace("#/home");

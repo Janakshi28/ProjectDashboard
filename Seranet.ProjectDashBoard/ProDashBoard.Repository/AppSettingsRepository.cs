@@ -85,5 +85,41 @@ namespace ProDashBoard.Data
             }
             return customSetting.Value;
         }
+
+        public string getEmailUserName()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["emailUserName"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("emailUserName " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No emailUserName string");
+            }
+            return customSetting.Value;
+        }
+
+        public string getEmailPassword()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["emailPassword"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("emailPassword " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No emailPassword string");
+            }
+            return customSetting.Value;
+        }
     }
 }

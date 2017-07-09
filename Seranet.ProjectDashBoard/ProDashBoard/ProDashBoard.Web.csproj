@@ -361,7 +361,11 @@
     <Content Include="app\teamSatisfaction\teamCtrl.js" />
     <Content Include="app\teamSatisfaction\teamFormCtrl.js" />
     <Content Include="app\teamSatisfaction\TeamSatisfactionForm.html" />
+    <Content Include="app\adminPanel\TeamSatisfactionSurveyEmail.html" />
+    <Content Include="app\adminPanel\teamSatisfactionSurveyEmailCtrl.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\angular-block-ui.css" />
+    <Content Include="Content\angular-block-ui.min.css" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
     <Content Include="Content\angular-material.layout-attributes.min.css" />
@@ -416,6 +420,8 @@
     <Content Include="Scripts\angular-aria.min.js" />
     <Content Include="Scripts\angular-aria\angular-aria.js" />
     <Content Include="Scripts\angular-aria\angular-aria.min.js" />
+    <Content Include="Scripts\angular-block-ui.js" />
+    <Content Include="Scripts\angular-block-ui.min.js" />
     <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
@@ -550,10 +556,13 @@
     <Content Include="fonts\Roboto\Roboto-Regular.ttf" />
     <Content Include="fonts\Roboto\Roboto-Thin.ttf" />
     <Content Include="fonts\Roboto\Roboto-ThinItalic.ttf" />
+    <Content Include="Content\angular-block-ui.css.map" />
     <None Include="Properties\PublishProfiles\NewProDashboard.pubxml" />
     <None Include="Properties\PublishProfiles\testifier.pubxml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\angular-block-ui.min.js.map" />
+    <Content Include="Scripts\angular-block-ui.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\higgidy_carousel-Copy.js" />
     <Content Include="Scripts\higgidy_carousel.js" />

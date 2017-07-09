@@ -8,9 +8,11 @@
   function adminPanelController($scope, toaster, $mdDialog, $http, $window, $event) {
     $window.location.href = '#/adminPanel/account';
     $scope.employeeNames = [];
+    $scope.adminRights = false;
     $scope.accountData;
     EmployeesInitializer();
     isAuthorized();
+    getLoggedUser();
     //$mdDialog.show(createConfirmDialog('HRIS Data Synchronization', 'Do you want to sysnchronize the employee and account details with HR IS ?', $event)).then(function () {
     //  //  EmployeesInitializer();
     //    // AccountsInitializer();
@@ -50,6 +52,17 @@
     $scope.error = "An Error has occured while loading posts!";
 
   });
+    }
+
+    function getLoggedUser() {
+      $http.get('api/Authorization/getLoggedInUser').success(function (data) {
+        $scope.loggedUser = data;
+        $scope.adminRights = $scope.loggedUser.AdminRights;
+      })
+      .error(function () {
+        $scope.error = "An Error has occured while loading posts!";
+
+      });
     }
 
     function EmployeesInitializer() {

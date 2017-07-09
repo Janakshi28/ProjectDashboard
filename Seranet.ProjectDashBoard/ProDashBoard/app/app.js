@@ -1,11 +1,12 @@
 ﻿//set angular module
-var app = angular.module("app", ['ui.router', 'ui.bootstrap', 'chart.js', 'toaster', 'ngAnimate', 'ngMaterial', 'HiggidyCarousel', 'angularSpinner', 'n3-pie-chart', 'ngSanitize']);
+var app = angular.module("app", ['ui.router', 'ui.bootstrap', 'chart.js', 'toaster', 'ngAnimate', 'ngMaterial', 'HiggidyCarousel', 'angularSpinner', 'n3-pie-chart', 'ngSanitize', 'blockUI']);
 
 //Configure app Urls
 
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, blockUIConfig) {
     $urlRouterProvider.otherwise('/');
-
+    blockUIConfig.autoBlock = false;
+    blockUIConfig.message = 'Please Wait....';
     $stateProvider.state('main', {
         url: '/',
         templateUrl: 'app/home/Home.html',
@@ -18,12 +19,19 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
 
     })
-        .state('teamForm', {
-            url: '/teamForm/',
+        .state('dynamicTeamForm', {
+            url: '/teamForm/:accountId/:year/:quarter',
             templateUrl: 'app/teamSatisfaction/TeamSatisfactionForm.html',
 
 
         })
+
+      .state('teamForm', {
+        url: '/teamForm',
+        templateUrl: 'app/teamSatisfaction/TeamSatisfactionForm.html',
+
+
+      })
         .state('customerSatisfaction', {
             url: '/customerSatisfaction/:id/:projectId/:year/:quarter',
             templateUrl: 'app/customerSatisfaction/CustomerSatisfaction.html',
@@ -37,7 +45,7 @@ app.config(function ($stateProvider, $urlRouterProvider) {
 
         })
         .state('processComplianceForm', {
-            url: '/processComplianceForm/',
+            url: '/processComplianceForm',
             templateUrl: 'app/processCompliance/ProcessComplianceForm.html',
 
 
@@ -63,6 +71,10 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/project',
         templateUrl: 'app/adminPanel/AdminProject.html',
 
+    })
+      .state('adminPanel.surveyEmail', {
+        url: '/surveyEmail',
+        templateUrl: 'app/adminPanel/TeamSatisfactionSurveyEmail.html',
 
     })
     .state('adminPanel.employee', {

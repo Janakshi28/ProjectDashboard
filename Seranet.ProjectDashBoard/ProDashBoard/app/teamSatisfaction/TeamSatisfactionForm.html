@@ -55,7 +55,7 @@
                         <div class="col-md-3"><b>Year</b></div>
                         <div class="col-md-2" style="color:red;">
                             <select class="form-control" data-ng-model="yearCombo" style="height:30px;width:150px;" data-ng-change="yearChange()" data-ng-disabled="accountChanged" required>
-                                <option data-ng-repeat="x in yearArray" value={{x}}>{{x}}</option>
+                                <option data-ng-repeat="x in yearArray" data-ng-selected="selectedYearParam=={{x}}" value={{x}}>{{x}}</option>
                             </select>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                         <div class="col-md-3"><b>Account</b></div>
                         <div class="col-md-2" style="color:red;">
                             <select class="form-control" data-ng-model="accountCombo" style="height:30px;width:150px;" data-ng-change="accountChange()" required>
-                                <option data-ng-repeat="account in accounts" value={{account[1]}}>{{account[0]}}</option>
+                                <option data-ng-repeat="account in accounts" data-ng-selected="selectedAccountParam=={{account[1]}}" value={{account[1]}}>{{account[0]}}</option>
                             </select>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                         <div class="col-md-3"><b>Quarter</b></div>
                         <div class="col-md-2" style="color:red;">
                             <select class="form-control" data-ng-model="quarterCombo" style="height:30px;width:150px;" data-ng-disabled="accountChanged" required>
-                                <option data-ng-repeat="q in quaterArray" value={{q}}>Quarter {{q}}</option>
+                                <option data-ng-repeat="q in quaterArray" data-ng-selected="selectedQuarterParam=={{q}}" value={{q}}>Quarter {{q}}</option>
 
                             </select>
                         </div>
@@ -156,7 +156,6 @@
                 </table>
 
             </div>
-
             <button type="submit" class="btn btn-secondary adminProjectField q1" data-ng-disabled="teamSatisfactionSurveyForm.$invalid" data-ng-model="submitBut" id="subBut">Submit</button>
         </form>
 

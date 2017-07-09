@@ -403,11 +403,15 @@
                         } else {
                             tempReturnArray[0] = 'teamlev2';
                         }
+                        //if ($scope.riskShow != false) {
                         $scope.riskDataVales.push(tempReturnArray);
                         $scope.riskShow = true;
+                          
+                        //}
                     })
                 } else {
-                    $scope.riskDataVales = [];
+                  $scope.riskDataVales = [];
+                  $scope.riskData = null;
                     $scope.riskShow = false;
                     //$scope.riskDataVales.push(null);
                 }
@@ -417,7 +421,8 @@
                 
             })
             .error(function () {
-
+              $scope.riskDataVales = [];
+              $scope.riskData = null;
             });
         }
 

@@ -32,7 +32,8 @@ namespace ProDashBoard
                        "~/Scripts/angular-spinner.min.js",
                        "~/Scripts/pie-chart.min.js",
                        "~/Scripts/bootstrap-select.min.js",
-                       "~/Scripts/angular-sanitize.js"
+                       "~/Scripts/angular-sanitize.js",
+                       "~/Scripts/angular-block-ui.min.js"
                        ));
 
 
@@ -53,7 +54,8 @@ namespace ProDashBoard
                       "~/Content/toaster.css",
                       "~/Content/higgidy_carousel.css",
                       "~/Content/higgidy_carousel-Copy.css",
-                      "~/Content/pie-chart.css"));
+                      "~/Content/pie-chart.css",
+                      "~/Content/angular-block-ui.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/appjs").Include(
                      "~/app/app.js",
@@ -68,6 +70,7 @@ namespace ProDashBoard
                     "~/app/adminPanel/adminPanelCtrl.js",
                     "~/app/adminPanel/adminÀccountCtrl.js",
                     "~/app/adminPanel/adminProjectCtrl.js",
+                    "~/app/adminPanel/teamSatisfactionSurveyEmailCtrl.js",
                     "~/app/adminPanel/adminEmployeesCtrl.js",
                     "~/app/financialStuff/financialFormCtrl.js",
                     "~/app/financialStuff/financialStatusCtrl.js"

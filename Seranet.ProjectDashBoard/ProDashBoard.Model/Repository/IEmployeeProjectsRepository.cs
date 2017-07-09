@@ -17,6 +17,7 @@ namespace ProDashBoard.Model.Repository
         EmployeeProjects getLoggedInUserLeadRights(int accountId, int empId, int lead);
         List<EmployeeProjectsData> getEmployeesOfSelectedProject(int projectId);
         List<EmployeeProjectsData> getEmployeesOfSelectedAccount(int accountId);
+        List<EmployeeProjectsData> getAllEmployeesOfSelectedAccount(int accountId);
         int add(EmployeeProjects employeeProject);
         int update(EmployeeProjects employeeProject);
         EmployeeProjects getLoggedInUserLeadRightsForAnyAccount(int empId);

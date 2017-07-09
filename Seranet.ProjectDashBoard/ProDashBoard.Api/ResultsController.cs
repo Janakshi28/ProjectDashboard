@@ -117,7 +117,7 @@ namespace ProDashBoard.Api
         //[ResponseType(typeof(String))]
         public HttpResponseMessage add([FromBody] List<SatisfactionResults> responseList)
         {
-            if (responseList.Count != 0)
+            if (responseList.Count != 0 && (authRepo.getTeamLeadRights(responseList[0].AccountId) || authRepo.getAccountRights(responseList[0].AccountId)))
             {
                 List<Object[]> pastResultList = repo.getReviweData(responseList[0].AccountId, responseList[0].Year, responseList[0].Quarter, responseList[0].MemberId);
 
@@ -222,7 +222,7 @@ namespace ProDashBoard.Api
                 }
             }
             else {
-                return Request.CreateResponse(HttpStatusCode.Forbidden, "No answers found.Please try to fill the form again");
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "Trying perform an invalid action....Access denied");
             }
             //return 1;
         }

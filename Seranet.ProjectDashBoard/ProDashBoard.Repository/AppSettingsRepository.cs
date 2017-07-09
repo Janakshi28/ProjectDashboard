@@ -121,5 +121,60 @@ namespace ProDashBoard.Data
             }
             return customSetting.Value;
         }
+
+        public string getEmailDomain()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["emailDomain"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("emailDomain " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No emailDomain string");
+            }
+            return customSetting.Value;
+        }
+
+        public string getEmailUri()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["emailUri"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("emailUri " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No emailUri string");
+            }
+            return customSetting.Value;
+        }
+
+        public string getEmailBodyLink()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["emailBodyLink"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("emailBodyLink " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No emailBodyLink string");
+            }
+            return customSetting.Value;
+        }
+
     }
 }

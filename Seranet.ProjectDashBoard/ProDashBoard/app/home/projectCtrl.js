@@ -448,7 +448,7 @@
                         $scope.images1.push(tempReturnArray);
 
                     })
-                    $scope.divVal = 100 / $scope.images1.length;
+                    $scope.divVal = 100 / $scope.processComplianceDataVal.length;
                     if ($scope.images1.length != 1) {
                         $scope.mainDevWidth = (387 * $scope.images1.length) + "px";
                     } else {

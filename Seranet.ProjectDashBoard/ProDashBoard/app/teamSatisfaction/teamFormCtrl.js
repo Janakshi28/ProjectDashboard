@@ -163,7 +163,6 @@
 
       var sendingData = JSON.stringify($scope.sendingData);
 
-      console.log(sendingData);
       $http.post('api/results/add', $scope.finalAnswerArray).success(function (data) {
         //alert("survey details saved successfully");
         toaster.pop('success', "Notificaton", "survey details saved successfully");

@@ -30,10 +30,12 @@ namespace ProDashBoard.Repository
 
         public void initializeEmailService() {
             service = new ExchangeService(ExchangeVersion.Exchange2007_SP1);
-            string pdsEmailUsername = appSettingsRepo.getEmailUserName();
-            string pdsEmailPassword = appSettingsRepo.getEmailPassword();
-            service.Credentials = new WebCredentials(pdsEmailUsername, pdsEmailPassword, "seranet");
-            service.Url = new Uri("https://mail.99xtechnology.com/ews/exchange.asmx");
+            string emailUsername = appSettingsRepo.getEmailUserName();
+            string emailPassword = appSettingsRepo.getEmailPassword();
+            string emailDomain = appSettingsRepo.getEmailDomain();
+            string emailUri = appSettingsRepo.getEmailUri();
+            service.Credentials = new WebCredentials(emailUsername, emailPassword,emailDomain);
+            service.Url = new Uri(emailUri);
             service.TraceEnabled = true;
             
         }
@@ -46,7 +48,7 @@ namespace ProDashBoard.Repository
                     + "<h4>Hi Team,</h4><br>"
                     + "<div>It is once again, that time of the quarter where you are tasked with filling out the team satisfaction survey for " + surveyEmailData.Year + " : Q" + surveyEmailData.Quarter + " . "
                     + "<br> Please be kind enough to complete this task before " + surveyEmailData.DeadLine + " .</ div>"
-                    + "<br><br> You may find the form here: <a href=http://localhost:59252/#/teamForm/" + surveyEmailData.Account.Id + "/" + surveyEmailData.Year + "/" + surveyEmailData.Quarter + " > http://localhost:59252/#/teamForm/" + surveyEmailData.Account.Id + "/" + surveyEmailData.Year + "/" + surveyEmailData.Quarter + " </a>"
+                    + "<br><br> You may find the form here: <a href="+appSettingsRepo.getEmailBodyLink()+"" + surveyEmailData.Account.Id + "/" + surveyEmailData.Year + "/" + surveyEmailData.Quarter + " >"+ appSettingsRepo.getEmailBodyLink() + "" + surveyEmailData.Account.Id + "/" + surveyEmailData.Year + "/" + surveyEmailData.Quarter + " </a>"
                     + "<br><br>Thank you<br>Regards,<br><b>Project Dashbaord Team</b>"
                     + "<br>-This is an auto generated email-"
                     + "</body></html>";
@@ -71,7 +73,6 @@ namespace ProDashBoard.Repository
                             {
                                 TeamMembers member = teamMemberRepo.Get(surveyEmailData.ValidEmployees[i]);
                                 string email = member.MemberName + "@99x.lk";
-                                //string email = "ishanm" + "@99x.lk";
                                 SendEmail(email, subject, body);
                             }
                             if (Interlocked.Decrement(ref pending) == 0)

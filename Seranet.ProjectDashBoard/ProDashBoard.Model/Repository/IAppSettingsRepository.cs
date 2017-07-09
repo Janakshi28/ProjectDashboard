@@ -11,5 +11,10 @@ namespace ProDashBoard.Model.Repository
         string getThreshold();
         string getSpecLink();
         string getProcessComplianceLink();
+        string getEmailUserName();
+        string getEmailPassword();
+        string getEmailUri();
+        string getEmailDomain();
+        string getEmailBodyLink();
     }
 }

@@ -30,7 +30,7 @@
                 if (isAdmin) {
                     console.log("admin");
                     //window.location.replace("#/coHome");
-                    window.location.replace("#/home");
+                    window.location.replace("#/coHome");
                 } else {
                     console.log("not an admin");
                     window.location.replace("#/home");

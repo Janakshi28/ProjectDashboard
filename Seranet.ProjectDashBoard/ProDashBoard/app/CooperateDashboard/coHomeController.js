@@ -10,6 +10,32 @@
     function CDBController($scope, toaster, $mdDialog, $rootScope, $http, $window, $timeout) {
 
         isAuthorized();
+        loadChartData();
+        
+
+        //Chart
+
+      
+      
+        function loadChartData() {
+
+
+            //Testing
+            $http.get('api/Summary').success(function (data) {
+                $scope.selectedSummary = data;
+            }).error(function () {
+                $scope.error = "An Error has occured while loading posts!";
+
+            });
+
+            var TeamSatisficationScore = 8.5;
+            var TScore = 1.5;
+            $scope.labels = ["Satisfication %", "%"];
+            $scope.data = [TeamSatisficationScore,TScore];
+            $scope.colors = ['#46BFBD', '#C0C0C0'];
+        }
+        $scope.TeamTrendArray = ["dsadsadadsada", "dsadasdsadsa", "qweqeqwewqeqwe"];
+
 
         //Chek authorization
         function isAuthorized() {

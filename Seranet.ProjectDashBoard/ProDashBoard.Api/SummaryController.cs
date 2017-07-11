@@ -44,7 +44,7 @@ namespace ProDashBoard.Api
             } else {
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
-                //repo.getSelectedProjectSummaries(id);
+            //repo.getSelectedProjectSummaries(id);
             //foreach(Summary summmary in list) {
             //    Console.WriteLine("Val "+summmary.Rating);
             //}
@@ -68,6 +68,24 @@ namespace ProDashBoard.Api
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
             
+        }
+
+        [HttpGet, Route("api/Summary/GetAverage")]
+        public HttpResponseMessage GetAverage(int Year,int Quarter)
+        {
+            bool rights = authRepo.getAdminRights();
+            Debug.WriteLine("SummaryAuth "  + " " + authRepo.getAdminRights() );
+
+            float average = 0;
+            average = repo.GetAverage(Year, Quarter);
+            if (rights)
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, average);
+            }
+            else
+            {
+                return Request.CreateResponse(HttpStatusCode.Forbidden);
+            }
         }
     }
 }

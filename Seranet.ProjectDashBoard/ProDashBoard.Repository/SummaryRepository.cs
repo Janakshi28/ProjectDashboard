@@ -22,7 +22,7 @@ namespace ProDashBoard.Data
         }
         public List<Summary> Get()
         {
-            return this._db.Query<Summary>("SELECT [Id],[Year],[Quarter],[Rating] FROM [Summary]").ToList();
+            return this._db.Query<Summary>("SELECT [Id],[Year],[Quarter],[Rating] FROM [Summary] order by Year desc,Quarter desc").ToList();
         }
         
         public List<Summary> getSelectedProjectSummaries(int projectId)
@@ -48,6 +48,14 @@ namespace ProDashBoard.Data
             }
 
             return rowsAffected;
+
+        }
+
+        public float GetAverage(int Year, int Quarter)
+        {
+            //float a = this._db.Query("SELECT AVG[Rating] FROM [Summary] WHERE Year ='"+Year+"'+ and Quarter='"+Quarter + "' ");
+            
+            return  0;
 
         }
     }

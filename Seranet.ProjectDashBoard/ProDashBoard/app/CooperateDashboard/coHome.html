@@ -1,13 +1,11 @@
 ﻿<div data-ng-controller="CDBController">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="modal-content">
-            <div class="col-md-4" style="padding-left:0">
+            <div class="col-md-5" style="padding-left:0">
                 <a href="#/home"><img src="/projectDashboard/Content/Images/logo2.png" style="padding-top:15px;padding-right:20px;height:45px;"></a>
                 &nbsp;
                 <div class="dropdown">
-
                     <button class="dropbtn" style="color:#6E6E6E;font-weight:normal;"><b>Forms</b></button>
-
                     <div class="dropdown-content" data-ng-show="isAdmin">
                         <a ui-sref="adminPanel">Admin Panel</a>
                         <a ui-sref="main">Project Dashboard</a>
@@ -15,21 +13,102 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <h3 style="margin-top: 15px; margin-bottom: 10px;">Cooperate Dashboard</h3>
+
+                <h4 style="margin-top: 15px; margin-bottom: 10px;"><b>Cooperate Dashboard</b></h4>
             </div>
-
-
-            <div class="col-md-4">
+            <div class="col-md-3">
                 <label style="padding-top:18px;float:right;color:#7F7F7F;font-weight:normal;font-family: 'Leelawadee UI';font-size:14px;">{{LoggedInUserName}}</label>
-
-            </div>
-
+             </div>
         </div>
     </div>
     <div data-ng-show="isAdmin">
-        <h1>Admin</h1>
-    </div>
+        <div class="modal-content">
+            <div class="row" style="display:block;">
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="topboader">
+                            <span><b>Team</b></span>
+                        </div>
+                        </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="topboader">
+                            <span><b>Customer</b></span>
+                        </div>
+                </div>
+             </div>
+            
+            <div class="row " style="display:block;">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="satisfication">
+
+                        <span id="widgetTitle">Satisfaction</span>
+                        <br />
+                        <div class="col-md-8">
+                            <canvas id="pie" class="chart chart-pie"
+                                    chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colors"></canvas>
+                        <br />
+                        </div>
+                        <div class="col-md-4">
+                            <li data-ng-repeat="x in TeamTrendArray">{{x}}</li>
+                        </div>
+                    </div>
+                 </div>
+
+
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="satisfication">
+                        <span id="widgetTitle">Satisfaction</span>
+                        <br />
+                        <div class="col-md-8">
+                            <canvas id="pie" class="chart chart-pie"
+                                    chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colors"></canvas>
+                            <br />
+                        </div>
+                        <div class="col-md-4">
+                            <li data-ng-repeat="x in TeamTrendArray">{{x}}</li>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+            <div class="row " style="display:block;">
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="satisfication">
+                        <span id="widgetTitle">SPEC</span>
+                       
+                    </div>
+                </div>
+                <div class="col-xs-3 col-sm-3 col-md-3">
+                    <div class="satisfication">
+                        <span id="widgetTitle">RISK</span>
+
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="satisfication">
+                        <span id="widgetTitle">Billable</span>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row " style="display:block;">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="satisfication">
+                        <span id="widgetTitle">Process Complience</span>
+                        <div data-ng-repeat="x in selectedSummary">
+                            <span>{{x.Year}}:{{x.Quarter}}:{{x.Rating}}<br /></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="satisfication">
+                        <span id="widgetTitle">NPS</span>
+                    </div>
+                </div>
+            </div>
     <div>
 
     </div>
+</div>
 </div>

@@ -1128,6 +1128,33 @@ md-card {
     line-height:1.5;
 }
 
+.topboader {
+    min-height: 20px;
+    cursor: pointer;
+    background-color:#ffffff;
+    border-radius: 12px;
+    height: 10%;
+    font-size:15px;
+    padding-top: 2px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #e5e9ec;
+    /*max-width:370px;*/
+}
+
+.satisfication {
+    min-height: 220px;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 1px 1px 1px #c1c1c1;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: 10%;
+    /*max-width:370px;*/
+}
+
+
+
 @font-face {
     font-family: Roboto;
     src: url('../fonts/Roboto/Roboto-Regular.ttf') format('opentype');

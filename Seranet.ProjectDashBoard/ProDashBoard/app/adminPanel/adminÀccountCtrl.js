@@ -173,7 +173,8 @@
                 toaster.pop('success', "Notificaton", "New Account Created Successfully");
                 //alert('New Account Created Successfully ');
 
-            }).error(function () {
+            }).error(function (error) {
+            toaster.pop('warning', "Notificaton", "New Account Created Successfully");
                 $scope.error = "An Error has occured while loading posts!";
             });
         }

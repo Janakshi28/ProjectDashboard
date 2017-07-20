@@ -10,6 +10,7 @@
     $scope.employeeNames = [];
     $scope.adminRights = false;
     $scope.accountData;
+    isAdminOrTeamLead();
     EmployeesInitializer();
     isAuthorized();
     getLoggedUser();
@@ -53,6 +54,20 @@
 
   });
     }
+
+      function isAdminOrTeamLead() {
+            //api/Authorization/getAdminOrTeamLeadRights/{accountId}
+            $http.get("api/Authorization/getAdminOrTeamLeadRights/1").success(function (data) {
+                $scope.isAdmin = data.split('-')[0].toLowerCase() == 'true';
+                $scope.isTeamLead = data.split('-')[1].toLowerCase() == 'true';
+                if(!$scope.isAdmin && !$scope.isTeamLead){
+                $window.location.href = '#/error';
+                }
+            })
+            .error(function () {
+
+            });
+        }
 
     function getLoggedUser() {
       $http.get('api/Authorization/getLoggedInUser').success(function (data) {

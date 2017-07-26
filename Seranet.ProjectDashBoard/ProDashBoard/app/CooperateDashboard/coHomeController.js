@@ -14,12 +14,7 @@
         
 
         //Chart
-
-      
-      
         function loadChartData() {
-
-
             //Testing
             $http.get('api/Summary').success(function (data) {
                 $scope.selectedSummary = data;

@@ -13,6 +13,7 @@
         $scope.year = Year;
         $scope.uniqueProjects = UniqueProjects;
         $scope.uniqueTypes = UniqueTypes;
+        $scope.searchKeyword = "";
         $scope.close = function () {
             $modalInstance.dismiss('cancel');
         };
@@ -22,16 +23,16 @@
         $scope.ProjectswithCodes = ActiveAccounts;
 
         //Filter on Name
-        $scope.change = function (name) {
-          $scope.ProjectswithCodes = [];
-            //console.log(name);
+        $scope.change = function (name,type) {
+                $scope.ProjectswithCodes = [];
+            console.log($scope.ProjectswithCodes);
             ActiveAccounts.forEach(function (project) {
-                if (project.Account == name) {
+                if ((project.Account == name || name=="All") && ( type == "All" || project.Catagory == type)) {
                     $scope.ProjectswithCodes.push(project);
-                } else if (name == "All") {
-                  $scope.ProjectswithCodes.push(project);
                 } 
             });
+
+            console.log($scope.ProjectswithCodes);
            // console.log($scope.ProjectswithCodes);
         }
         //Filter on Type

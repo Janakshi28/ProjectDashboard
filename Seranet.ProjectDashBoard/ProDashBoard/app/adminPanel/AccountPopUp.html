@@ -11,13 +11,15 @@
                 <select  
                         class="myList"
                         data-ng-model="SelectedProject" 
-                        data-ng-change="change(SelectedProject)" 
+                        data-ng-change="change(SelectedProject,SelectedType)" 
                         data-ng-options="project for project in uniqueProjects"
                         ng-init="SelectedProject=SelctProj"
                         >
                 </select>
             </div>
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <input type="text" data-ng-model="searchKeyword" placeholder="Search" class="form-control" style="width:100%;margin:0;text-align:center;">
+            </div>
             <div class="col-md-2" style="padding-left:20px"><h5><b>Category</b></h5></div>
             <div class="col-md-3" style="float:left">
                 <select 
@@ -44,7 +46,7 @@
                         <th>Category</th>
                         <th>Select</th>
                     </tr>
-                    <tr data-ng-repeat="project in ProjectswithCodes">
+                    <tr data-ng-repeat="project in ProjectswithCodes | filter: {Name : searchKeyword}">
                         <td style="padding-left:15px">{{project.Code}}</td>
                         <td style="padding-left:10px">{{project.Name}}</td>
                         <td style="padding-left:15px">{{project.Catagory}}</td>

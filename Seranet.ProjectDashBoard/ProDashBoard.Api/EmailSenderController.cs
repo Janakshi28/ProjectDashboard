@@ -40,7 +40,7 @@ namespace ProDashBoard.Api
         public HttpResponseMessage sendSurveyEmail([FromBody]SurveyEmail surveyEmail)
         {
             Debug.WriteLine(surveyEmail);
-            if (authRepo.getAdminRights())
+            if (authRepo.getAdminRights() || authRepo.getTeamLeadRights(surveyEmail.Account.Id))
             {
                 return Request.CreateResponse(HttpStatusCode.OK, repo.sendTeamSatisfactionSurveyEmails(surveyEmail));
             }

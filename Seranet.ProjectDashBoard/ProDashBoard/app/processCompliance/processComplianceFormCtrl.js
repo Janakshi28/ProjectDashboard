@@ -8,6 +8,7 @@
         $scope.answerArray = [];
         isAuthorized();
         initializer();
+        isAdminOrTeamLead();
         function chunk(arr) {
             var newArr = [];
             var tempArray = [];
@@ -33,6 +34,7 @@
         })
 
     .error(function () {
+        $window.location.href = '#/error';
         $scope.error = "An Error has occured while loading posts!";
     });
         $scope.qParameters = [];
@@ -92,6 +94,18 @@
         });
         }
 
+        function isAdminOrTeamLead() {
+            //api/Authorization/getAdminOrTeamLeadRights/{accountId}
+            $http.get("api/Authorization/getAdminOrTeamLeadRights/1").success(function (data) {
+                $scope.isAdmin = data.split('-')[0].toLowerCase() == 'true';
+                if (!$scope.isAdmin) {
+                    $window.location.href = '#/error';
+                }
+            })
+            .error(function () {
+
+            });
+        }
 
         //Load all the enabled subProjects
         function loadProjectData() {
@@ -166,10 +180,10 @@
             });
         };
 
-        $scope.initializeQualityParameterCombo=function(){
+        $scope.initializeQualityParameterCombo = function () {
             for (var y = 0; y < $scope.originalParameters.length; y++) {
 
-                $scope.answerArray[$scope.originalParameters[y].Id]="";
+                $scope.answerArray[$scope.originalParameters[y].Id] = "";
             }
         }
 
@@ -202,7 +216,9 @@
                 toaster.pop('success', "Notificaton", "Survey Details Saved Successfully");
             })
 
-        .error(function () {
+        .error(function (error) {
+            $window.location.href = '#/error';
+            //toaster.pop('warning', "Notificaton", error);
             $scope.error = "An Error has occured while loading posts!";
         });
         }

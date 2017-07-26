@@ -329,6 +329,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\adminPanel\AccountPopUp.html" />
     <Content Include="app\adminPanel\AdminAccount.html" />
     <Content Include="app\adminPanel\AdminEmployees.html" />
     <Content Include="app\adminPanel\adminEmployeesCtrl.js" />
@@ -337,7 +338,8 @@
     <Content Include="app\adminPanel\AdminProject.html" />
     <Content Include="app\adminPanel\adminProjectCtrl.js" />
     <Content Include="app\adminPanel\AdminSettings.html" />
-    <Content Include="app\adminPanel\adminÀccountCtrl.js" />
+    <Content Include="app\adminPanel\adminAccountCtrl.js" />
+    <Content Include="app\adminPanel\AccountPopUpCtrl.js" />
     <Content Include="app\app.js" />
     <Content Include="app\customerSatisfaction\CustomerSatisfaction.html" />
     <Content Include="app\customerSatisfaction\customerSatisfactionCtrl.js" />

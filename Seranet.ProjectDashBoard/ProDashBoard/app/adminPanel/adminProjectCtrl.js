@@ -36,6 +36,7 @@
             });
         }
 
+
         function loadActiveProjects() {
             $http.get('api/Project/getAdminPanelActiveProjects').success(function (data) {
                 if (data.length != 0) {
@@ -222,5 +223,10 @@
                 $scope.error = "An Error has occured while loading posts!";
             });
         }
+
+      
+
+
+
     }
 })();

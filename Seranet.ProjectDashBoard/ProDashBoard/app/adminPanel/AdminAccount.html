@@ -82,7 +82,6 @@
                         <br />
                         <span>Jira Project Code(s)</span>
                     </div>
-
                     <div class="col-md-3" style="display:flex">
                         <br />
                         <span>
@@ -90,15 +89,13 @@
                         </span>
                         <!--<span><md-checkbox class="md-warn md-align-top-left"  data-ng-click="setselectedAccountAvailability()" id="selectedAccountCheck" data-ng-model="isAccountInactive" label="md-checkbox" data-ng-disabled="accountDisabled">Inactive Account</md-checkbox></span>-->
                         <span>
-                            <img src="/projectDashboard/Content/Images/tooltip.png" class="tooltipImg">
+                            <img src="/projectDashboard/Content/Images/tooltip.png" class="tooltipImg" data-ng-click="open()">
                             <md-tooltip id="slider-tooltip" md-direction="top" class="large" md-autohide="true">
                                 <div class="tooltipDiv">
                                     <label class="tooltipLabel">
-                                        Provide the Codes of the Billable projects in Jira.<br> If there are multiple billable project codes,
-                                        <br>it should be separated by comma ‘,’
-                                        (ex : CD,CX)
-                                        </label>
-                                    </div>
+                                        Click the icon to get project Codes
+                                    </label>
+                                </div>
                             </md-tooltip>
                         </span>
                     </div>
@@ -142,6 +139,7 @@
                         </div>
                     </div>
                     <div class="adminAccountProjectCover">
+                        <table id="adminAccountProjects" style="width:100%;">
 
                         <table id="adminAccountProjects" style="width:100%;">
                             <tr style="border-bottom: 1px solid #ccc;">
@@ -165,7 +163,6 @@
                 </div>
 
                 <!--<div class="row">
-
                     <div class="col-md-2">
                         <button class="btn btn-secondary adminProjectField q1" data-ng-disabled="AdminAccountForm.$invalid" style="width:100px;" data-ng-click="saveAccount()">Save</button>
                     </div>
@@ -175,7 +172,5 @@
 
     </div>
 
-
-</div>
 
 </div>

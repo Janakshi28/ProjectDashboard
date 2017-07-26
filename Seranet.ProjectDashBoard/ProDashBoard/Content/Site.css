@@ -42,6 +42,19 @@ select, text {
         background-color: #FFFFFF;
     }
 
+.myList{
+    width: 150px;
+    height: 30px;
+    border-radius: 4px;
+    display: block;
+    margin: 0 auto;
+    align-content: center;
+    background-color: #FFFFFF;
+    border-style: solid;
+    color: #000000;
+    font-weight: 800;
+    font-size: 13px;
+}
 .specWidget {
     /*width: 470px;*/
     height: 150px;

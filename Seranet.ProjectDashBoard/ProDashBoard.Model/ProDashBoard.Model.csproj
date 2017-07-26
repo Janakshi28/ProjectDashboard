@@ -98,7 +98,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -117,6 +119,7 @@
     <Compile Include="FinancialFinalData.cs" />
     <Compile Include="FinancialSummary.cs" />
     <Compile Include="ProcessComplianceWidgetData.cs" />
+    <Compile Include="ProjectCodesData.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IAppSettingsRepository.cs" />
     <Compile Include="Repository\IAuthorizationRepository.cs" />

@@ -105,7 +105,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account.cs" />
-    <Compile Include="CD_TeamSatisfactionData.cs" />
+    <Compile Include="CD_ProjectSatisfactionData.cs" />
+    <Compile Include="CD_SatisfactionData.cs" />
     <Compile Include="CommonData.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="CustomerSatisfactionResults.cs" />
@@ -121,6 +122,7 @@
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IAppSettingsRepository.cs" />
     <Compile Include="Repository\IAuthorizationRepository.cs" />
+    <Compile Include="Repository\ICD_CustomerSatisfactionRepository.cs" />
     <Compile Include="Repository\ICD_TeamSatisfactionRepository.cs" />
     <Compile Include="Repository\ICommonDataRepository.cs" />
     <Compile Include="Repository\ICustomerSatResultsRepository.cs" />

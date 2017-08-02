@@ -121,6 +121,8 @@
     <Compile Include="AppSettingsController.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthorizationController.cs" />
+    <Compile Include="CD_CustomerSatisfactionController.cs" />
+    <Compile Include="CD_TeamSatisfactionController.cs" />
     <Compile Include="CommodDataController.cs" />
     <Compile Include="CustomerSatisfactionResultsController.cs" />
     <Compile Include="CustomerSatisfactionSummaryController.cs" />

@@ -1,8 +1,8 @@
 ﻿<div data-ng-controller="CDBController">
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="modal-content">
             <div class="col-md-5" style="padding-left:0">
-                <a href="#/home"><img src="/projectDashboard/Content/Images/logo2.png" style="padding-top:15px;padding-right:20px;height:45px;"></a>
+                <a href="#/home"><img src="/Content/Images/logo2.png" style="padding-top:15px;padding-right:20px;height:45px;"></a>
                 &nbsp;
                 <div class="dropdown">
                     <button class="dropbtn" style="color:#6E6E6E;font-weight:normal;"><b>Forms</b></button>
@@ -18,97 +18,260 @@
             </div>
             <div class="col-md-3">
                 <label style="padding-top:18px;float:right;color:#7F7F7F;font-weight:normal;font-family: 'Leelawadee UI';font-size:14px;">{{LoggedInUserName}}</label>
-             </div>
+            </div>
         </div>
     </div>
     <div data-ng-show="isAdmin">
         <div class="modal-content">
-            <div class="row" style="display:block;">
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="topboader">
-                            <span><b>Team</b></span>
-                        </div>
-                        </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="topboader">
-                            <span><b>Customer</b></span>
-                        </div>
-                </div>
-             </div>
-            
+            <br />
             <div class="row " style="display:block;">
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="satisfication">
-
-                        <span id="widgetTitle">Satisfaction</span>
-                        <br />
-                        <div class="col-md-8">
-                            <canvas id="pie" class="chart chart-pie"
-                                    chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colors"></canvas>
-                        <br />
-                        </div>
-                        <div class="col-md-4">
-                            <li data-ng-repeat="x in TeamTrendArray">{{x}}</li>
-                        </div>
-                    </div>
-                 </div>
-
-
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="satisfication">
-                        <span id="widgetTitle">Satisfaction</span>
-                        <br />
-                        <div class="col-md-8">
-                            <canvas id="pie" class="chart chart-pie"
-                                    chart-data="data" chart-labels="labels" chart-options="options" chart-colours="colors"></canvas>
+                        <div class="col-md-6">
+                            <span style="font-size: 12pt;cursor:default"> <b>Team</b> <br /> Satisfaction</span>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <hr style="border-color:coral;height:2px;margin:0px" />
+                                </div>
+                            </div>
+                            <div id="canvas-holder2">
+                                <label class="chart-title2" ng-show="ChartObject.Trend" style="font-size:35px">{{ChartObject.Rating}}
+                                <span style="font-size:22px">/10</span>
+                                <img src="/Content/Images/up.png" style="height:18px; z-index: -1;">
+                                </label>
+                                <label class="chart-title2" ng-hide="ChartObject.Trend" style="font-size:35px">{{ChartObject.Rating}}
+                                <span style="font-size:22px">/10</span>
+                                 <img src="/Content/Images/down.png" style="height:18px; z-index: -1;">
+                                </label>
+                                <canvas id="myChart"
+                                        class="chart chart-doughnut"
+                                        chart-data="data"
+                                        chart-labels="labels"
+                                        chart-options="options"
+                                        chart-colours="colors"
+                                        height="110" width="130"></canvas>
+                                <span  class="widgetDetails">{{chartTime}}</span>
+                            </div>
                             <br />
                         </div>
-                        <div class="col-md-4">
-                            <li data-ng-repeat="x in TeamTrendArray">{{x}}</li>
+                        <div class="col-md-6">
+                            <br />
+                            <div data-ng-show="Trends">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isTrends()" style="font-size:16px;cursor: pointer;">Trends</a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isProjects()" style="cursor: pointer;">Projects</a>
+                                    </div>
+                                </div>
+                                <div style="height:155px; overflow-x: hidden">
+                                    <table id="Satisfaction Trends" style="width:100%;">
+                                        <tr>
+                                            <th>   </th>
+                                        </tr>
+                                        <tr data-ng-repeat="project in selectedSummary" style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px;width:30%">{{project.Year}}</td>
+                                            <td style="padding-left:0px;width:20%">{{project.Quarter}}</td>
+                                            <td style="padding-left:15px">{{project.Rating}}</td>
+                                            <td style="padding-left:20px">
+                                                <span ng-show="project.Trend">
+                                                    <img src="/Content/Images/up.png">
+                                                </span>
+                                                <span ng-hide="project.Trend">
+                                                    <img src="/Content/Images/down.png">
+                                                </span>
+                                            </td>
+                                        <tr>
+                                            <td data-ng-show="TeamShowMore" style="padding-left:15px;font-size:12px;cursor: pointer;"><a>More</a></td>
+                                        </tr>
+                                        
+                                    </table>
+                                    </div>
+                                </div>
+                            
+                            <div data-ng-show="Projects">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isTrends()" style="cursor: pointer;">Trends</a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isProjects()" style="font-size:16px;cursor:pointer">Projects</a>
+                                    </div>
+
+                                </div>
+                                <div class="scrollbar" id="style-2" style="overflow:auto; height:155px; overflow-x: hidden">
+                                <table id="Satisfaction Trends" style="width:100%;">
+                                   <tr>
+                                       <th>   </th>
+                                   </tr>
+                                    <tr data-ng-repeat="project in TeamSatisfactionProjects" style="border-bottom: 1px solid #ccc;">
+                                        <td style="padding-left:15px;width:60%">{{project.Name}}</td>
+                                        <td style="padding-left:20px">{{project.Rating}}</td>
+                                    </tr>
+                                   
+                                    
+                                </table>
+                                    </div>
+                            </div>
+
+                            <br />
+                            <a style="padding-left:60px;cursor:pointer">Completed Amount</a>
+
                         </div>
                     </div>
                 </div>
-        </div>
 
-            <div class="row " style="display:block;">
-                <div class="col-xs-3 col-sm-3 col-md-3">
-                    <div class="satisfication">
-                        <span id="widgetTitle">SPEC</span>
-                       
-                    </div>
-                </div>
-                <div class="col-xs-3 col-sm-3 col-md-3">
-                    <div class="satisfication">
-                        <span id="widgetTitle">RISK</span>
-
-                    </div>
-                </div>
 
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="satisfication">
-                        <span id="widgetTitle">Billable</span>
+                        <div class="col-md-6">
+                            <span style="font-size: 12pt;padding-left:0px;cursor:default"> <b>Customer </b><br />  Satisfaction</span>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <hr style="border-color:coral;height:2px;margin:0px" />
+                                </div>
+                            </div>
+                            <div id="canvas-holder2">
+                                <label class="chart-title2" ng-show="CustomerChartObject.Trend" style="font-size:35px">{{CustomerChartObject.Rating}}
+                                <span style="font-size:22px">/5 </span>
+                                <img src="/Content/Images/up.png" style="height:18px; z-index: -1;"></label>
+                                <label class="chart-title2" ng-hide="CustomerChartObject.Trend" style="font-size:35px">{{CustomerChartObject.Rating}}
+                                <span style="font-size:22px">/5 </span>
+                                <img src="/Content/Images/down.png" style="height:18px; z-index: -1;"></label>
+                                <canvas id="myChart"
+                                        class="chart chart-doughnut"
+                                        chart-data="Customerdata"
+                                        chart-labels="Customerlabels"
+                                        chart-options="options"
+                                        chart-colours="Customercolors"
+                                        height="110" width="130"></canvas>
+                                <span class="widgetDetails">{{CustomerchartTime}}</span>
+                            </div>
+                            <br />
+                        </div>
+                        <div class="col-md-6">
+                            <div data-ng-show="CustomerTrends">
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isCustomerTrends()" style="font-size:16px;cursor:pointer">Trends</a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isCustomerProjects()" style="cursor:pointer">Projects</a>
+                                    </div>
+                                </div>
+                                <div style="height:155px">
+                                    <table id="Satisfaction Trends" style="width:100%;">
+                                        <tr>
+                                            <th></th>
+                                        </tr>
+                                        <tr data-ng-repeat="project in selectedCustomerSummary" style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px">{{project.Year}}</td>
+                                            <td style="padding-left:0px">{{project.Quarter}}</td>
+                                            <td style="padding-left:15px">{{project.Rating}}</td>
+                                            <td style="padding-left:20px">
+                                                <span ng-show="project.Trend">
+                                                    <img src="/Content/Images/up.png">
+                                                </span>
+                                                <span ng-hide="project.Trend">
+                                                    <img src="/Content/Images/down.png">
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-ng-show="CustomerShowMore" style="padding-left:15px;font-size:12px;cursor:pointer"><a>More</a></td>
+                                        </tr>
+
+                                    </table>
+                                    </div>
+                                </div>
+
+                            <div data-ng-show="CustomerProjects">
+                                <br />
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isCustomerTrends()" style="cursor:pointer">Trends</a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isCustomerProjects()" style="font-size:16px;cursor:pointer">Projects</a>
+                                    </div>
+
+                                </div>
+                                <div class="scrollbar" id="style-2" style="overflow:auto; height:155px; overflow-x: hidden">
+                                    <table id="Satisfaction Trends" style="width:100%;">
+                                        <tr>
+                                            <th>   </th>
+                                        </tr>
+                                        <tr data-ng-repeat="project in CustomerSatisfactionProjects" style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px;width:60%">{{project.Name}}</td>
+                                            <td style="padding-left:20px">{{project.Rating}}</td>
+                                        </tr>
+                                        
+                                    </table>
+                                    </div>
+                                </div>
+                             <br />
+                            <a style="padding-left:60px;cursor:pointer">Completed Amount</a>
+                            </div>
                     </div>
                 </div>
             </div>
+
             <br />
 
-            <div class="row " style="display:block;">
+            <div class="row "style="display:block;">
                 <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="satisfication">
-                        <span id="widgetTitle">Process Complience</span>
-                        <div data-ng-repeat="x in selectedSummary">
-                            <span>{{x.Year}}:{{x.Quarter}}:{{x.Rating}}<br /></span>
+                    <div class="col-xs-8 col-sm-8 col-md-8">
+                        <div class="row " style="display:block;">
+                            <div class="CD_Widget">
+                                <span id="widgetTitle">SPEC</span>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row" style="display:block;">
+                            <div class="CD_Widget">
+                                <span id="widgetTitle">Process Complience</span>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 col-sm-4 col-md-4">
+                        <div class="riskWidget">
+                            <span id="widgetTitle">Risk</span>
+
                         </div>
                     </div>
                 </div>
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="satisfication">
-                        <span id="widgetTitle">NPS</span>
-                    </div>
-                </div>
-            </div>
-    <div>
+                
+                    <div class="col-xs-6 col-sm-6 col-md-6">
+                        <div class="row" style="display:block;">
+                            <div class="CD_Widget ">
+                                <span id="widgetTitle">Billable</span>
 
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row" style="display:block;">
+                            <div class="CD_Widget">
+                                <span id="widgetTitle">NPS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            
+        </div>
     </div>
-</div>
 </div>

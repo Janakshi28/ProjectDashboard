@@ -984,12 +984,33 @@ md-card {
     margin: 0 auto;
 }
 
+#canvas-holder2 {
+    height: 175px;
+    width: 175px;
+    position: relative;
+    display: block;
+    margin: 0 auto;
+}
+
 .chart-title {
     position: absolute;
     left: 0;
     right: 10px;
     margin: 0 auto;
     top: 50%;
+    transform: translateY(-50%);
+    /*width: 18%;*/
+    text-align: center;
+    font-size: 18px;
+    font-family: Roboto;
+}
+
+.chart-title2 {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    margin: 0 auto;
+    top: 43%;
     transform: translateY(-50%);
     /*width: 18%;*/
     text-align: center;
@@ -1143,7 +1164,29 @@ md-card {
 }
 
 .satisfication {
-    min-height: 220px;
+    padding-top:15px;
+    min-height: 270px;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 1px 1px 1px #c1c1c1;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: 10%;
+    /*max-width:370px;*/
+}
+
+.CD_Widget {
+    min-height: 200px;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 1px 1px 1px #c1c1c1;
+    cursor: pointer;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: 10%;
+    /*max-width:370px;*/
+}
+
+.riskWidget {
+    min-height: 420px;
     -webkit-box-shadow: 0 0 2px black;
     box-shadow: 1px 1px 1px #c1c1c1;
     cursor: pointer;
@@ -1174,5 +1217,28 @@ md-card {
     src: url('../fonts/Roboto/Roboto-Light.ttf') format('opentype');
     font-weight: normal;
     font-style: normal;
+}
+/*
+ *  STYLE 2
+ */
+
+#style-2::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: #F5F5F5;
+}
+
+#style-2::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #F5F5F5;
 }
 

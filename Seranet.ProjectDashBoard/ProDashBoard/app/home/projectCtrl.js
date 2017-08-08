@@ -40,6 +40,8 @@
         $scope.rval = "No Information Found";
         $scope.loggedInUserId = 0;
         $scope.isAdmin = false;
+        $scope.CorporateDashboard = false;
+
         $scope.images = [];
         $scope.images1 = [];
         //$scope.specShow = true;
@@ -134,6 +136,7 @@
         function loadStart() {
             Initializer();
             $scope.myVal = $scope.key1;
+            corporateDBSwitch();
             isAdminOrTeamLead();
             $scope.teamLink = '#/teamSatisfaction/' + $scope.myVal;
             $scope.customerSatisfactionLink = '#/customerSatisfaction/' + $scope.myVal;
@@ -559,16 +562,20 @@
             $scope.loading = false;
         });
         }
-
+        function corporateDBSwitch() {
+            $http.get("api/AppSettings/getCorporateDashboard").success(function (data2) {
+                $scope.CorporateDashboard = data2;
+                console.log($scope.CorporateDashboard);
+            }).error(function () {
+                $scope.CorporateDashboard = false;
+            });
+        }
         function isAdminOrTeamLead() {
             //api/Authorization/getAdminOrTeamLeadRights/{accountId}
             $http.get("api/Authorization/getAdminOrTeamLeadRights/" + $scope.myVal).success(function (data) {
+                
                 $scope.isAdmin = data.split('-')[0].toLowerCase() == 'true';
                 $scope.isTeamLead = data.split('-')[1].toLowerCase() == 'true';
-                //if ($scope.isAdmin) {
-                //    window.location.href = "#/coHome" ;
-                //}
-                
             })
             .error(function () {
 

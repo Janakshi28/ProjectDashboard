@@ -7,15 +7,14 @@
                 <div class="dropdown">
 
                     <button class="dropbtn" style="color:#6E6E6E;font-weight:normal;"><b>Forms</b></button>
-
+                   
                     <div class="dropdown-content">
                         <a ui-sref="teamForm">Team Satisfaction Survey</a>
                         <a data-ng-show="isAdmin==true" ui-sref="processComplianceForm">Process Compliance Form</a>
                         <a data-ng-if="isAdmin==true || isTeamLead==true" ui-sref="adminPanel">Admin Panel</a>
                         <a data-ng-if="isAdmin==true || isTeamLead==true" ui-sref="financialForm">TimeReport Form</a>
-                        <a data-ng-if="isAdmin==true || isTeamLead==true" ui-sref="coHome">Coperate Dashboard</a>
-
-
+                        <a data-ng-show="CorporateDashboard" data-ng-if="isAdmin==true || isTeamLead==true" ui-sref="coHome">Coperate Dashboard</a>
+                       
                     </div>
                 </div>
             </div>

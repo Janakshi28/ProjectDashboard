@@ -9,7 +9,6 @@ app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('main', {
         url: '/home',
         templateUrl: 'app/home/Home.html',
-        //SDAD
     })
     .state('teamSatisfaction', {
         url: '/teamSatisfaction/:id',

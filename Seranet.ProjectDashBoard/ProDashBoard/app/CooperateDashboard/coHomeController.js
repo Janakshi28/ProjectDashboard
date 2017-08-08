@@ -13,7 +13,7 @@
         TeamSatisfactionData();
         CustomerSatisfactionData();
        
-
+        //Initial Settings
         $scope.Trends = true;
         $scope.Projects = false;
         $scope.CustomerTrends = true;
@@ -21,6 +21,7 @@
         $scope.TeamShowMore = false;
         $scope.CustomerShowMore = false;
 
+        //Chart Details
         $scope.options = {
             percentageInnerCutout: 80,
             animation: true
@@ -33,8 +34,10 @@
         function TeamSatisfactionData() {
             $http.get('api/CD_TeamSatisfactionController/get').success(function (data) {
                 for (var i = 0; i < (data.length-1); i++) {
-                    if (parseFloat(data[i].Rating) >= parseFloat(data[i + 1].Rating)) {
+                    if (parseFloat(data[i].Rating) > parseFloat(data[i + 1].Rating)) {
                         data[i].Trend = true;
+                    } else if (parseFloat(data[i].Rating) == parseFloat(data[i + 1].Rating)) {
+                        data[i].isEqual = true;
                     }
                 }
                
@@ -69,9 +72,9 @@
                     $scope.colors = $scope.highColour;
                 }
                 TeamSatisfactionProjects();
+                ProjectCompletion()
             }).error(function () {
                 $scope.error = "An Error has occured while loading posts!";
-
             });
            
         }
@@ -80,6 +83,16 @@
             $http.get('api/CD_TeamSatisfactionController/getProjects/' + $scope.TeamYear + '/' + $scope.TeamQuarter).success(function (data) {
                 console.log(data);
                 $scope.TeamSatisfactionProjects = data;
+            }).error(function () {
+                console.log("ERRORRRR");
+                $scope.error = "An Error has occured while loading posts!";
+            })
+        }
+        //Count
+        function ProjectCompletion() {
+            $http.get('api/CD_TeamSatisfactionController/getProjectsCount/' + $scope.TeamYear + '/' + $scope.TeamQuarter).success(function (data) {
+                console.log(data);
+                $scope.TeamSatisfactionCount = data;
             }).error(function () {
                 console.log("ERRORRRR");
                 $scope.error = "An Error has occured while loading posts!";
@@ -102,14 +115,14 @@
                 console.log(data);
 
                 for (var i = 0; i < (data.length - 1) ; i++) {
-                    if (parseFloat(data[i].Rating) >= parseFloat(data[i + 1].Rating)) {
+                    if (parseFloat(data[i].Rating) > parseFloat(data[i + 1].Rating)) {
                         data[i].Trend = true;
+                    } else if (parseFloat(data[i].Rating) == parseFloat(data[i + 1].Rating)) {
+                        data[i].isEqual = true;
                     }
                 }
 
                 $scope.selectedCustomerSummary = data;
-
-                console.log($scope.selectedCustomerSummary);
 
                 //Rating values
                 var CustomerChartObject = $scope.selectedCustomerSummary.shift();
@@ -151,6 +164,8 @@
             $http.get('api/CD_CustomerSatisfactionController/getProjects/' + $scope.CustomerYear + '/' + $scope.CustomerQuarter).success(function (data) {
                 console.log(data);
                 $scope.CustomerSatisfactionProjects = data;
+                $scope.NumberofProjects = data.length;
+                //console.log("dsadasdasds"+data.length);
             }).error(function () {
                 console.log("ERRORRRR");
                 $scope.error = "An Error has occured while loading posts!";
@@ -208,5 +223,6 @@
         }
 
     }
+
 
 })();

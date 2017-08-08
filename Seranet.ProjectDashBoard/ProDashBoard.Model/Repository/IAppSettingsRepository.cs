@@ -11,5 +11,6 @@ namespace ProDashBoard.Model.Repository
         string getThreshold();
         string getSpecLink();
         string getProcessComplianceLink();
+        bool getCorporateDashboard();
     }
 }

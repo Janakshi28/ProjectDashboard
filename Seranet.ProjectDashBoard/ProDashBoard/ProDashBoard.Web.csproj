@@ -343,6 +343,7 @@
     <Content Include="app\AuthHandler\AuthController.js" />
     <Content Include="app\CooperateDashboard\coHome.html" />
     <Content Include="app\CooperateDashboard\coHomeController.js" />
+    <Content Include="app\CooperateDashboard\ComplienceController.js" />
     <Content Include="app\customerSatisfaction\CustomerSatisfaction.html" />
     <Content Include="app\customerSatisfaction\customerSatisfactionCtrl.js" />
     <Content Include="app\error\errorCtrl.js" />

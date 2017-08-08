@@ -42,5 +42,11 @@ namespace ProDashBoard.Api
         {
             return Convert.ToString(repo.getProcessComplianceVersion());
         }
+
+        [HttpGet, Route("api/AppSettings/getCorporateDashboard")]
+        public bool getCorporateDashboard()
+        {
+            return repo.getCorporateDashboard();
+        }
     }
 }

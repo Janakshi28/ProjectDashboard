@@ -12,5 +12,7 @@ namespace ProDashBoard.Model.Repository
     {
         List<CD_SatisfactionData> Get();
         List<CD_ProjectSatisfactionData> GetProjects(int Year, int Quarter);
+
+        int getCompletion(int Year, int Quarter);
     }
 }

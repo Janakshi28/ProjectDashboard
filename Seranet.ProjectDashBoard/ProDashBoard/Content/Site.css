@@ -1175,10 +1175,10 @@ md-card {
 }
 
 .CD_Widget {
+    padding-top:8px;
     min-height: 200px;
     -webkit-box-shadow: 0 0 2px black;
     box-shadow: 1px 1px 1px #c1c1c1;
-    cursor: pointer;
     background-color: #FFFFFF;
     border-radius: 12px;
     height: 10%;

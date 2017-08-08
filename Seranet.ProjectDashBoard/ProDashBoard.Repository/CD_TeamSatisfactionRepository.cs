@@ -30,9 +30,15 @@ namespace ProDashBoard.Data
             return resultsArray;
         }
 
+        public int getCompletion(int Year, int Quarter)
+        {
+            List<CD_SatisfactionData> Completed = this._db.Query("SELECT Year FROM [ProjectDashboard].[dbo].[TeamSatisfactionEmployeeSummary] where year="+Year+ "and Quarter ="+Quarter+";").Select(d => new CD_SatisfactionData { Year = d.Year}).ToList();
+            return Completed.Count();
+        }
+
         public List<CD_ProjectSatisfactionData> GetProjects(int year,int quarter)
         {
-            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.AccountName, sumr.Rating FROM Summary sumr join Account pj on sumr.ProjectID = pj.Id where sumr.Year ="+year+" and sumr.Quarter ="+quarter +"; ").Select(d => new CD_ProjectSatisfactionData { Name =d.AccountName, Rating = d.Rating }).ToList();
+            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.AccountName, sumr.Rating FROM Summary sumr join Account pj on sumr.ProjectID = pj.Id where sumr.Year ="+year+" and sumr.Quarter ="+quarter + " and sumr.Rating !=0 order by sumr.Rating desc; ").Select(d => new CD_ProjectSatisfactionData { Name =d.AccountName, Rating = d.Rating }).ToList();
 
             return resultsArray;
         }

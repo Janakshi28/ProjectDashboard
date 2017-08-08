@@ -4,13 +4,13 @@
             <div class="col-md-5" style="padding-left:0">
                 <a href="#/home"><img src="/Content/Images/logo2.png" style="padding-top:15px;padding-right:20px;height:45px;"></a>
                 &nbsp;
-                <div class="dropdown">
+                <!--<div class="dropdown">
                     <button class="dropbtn" style="color:#6E6E6E;font-weight:normal;"><b>Forms</b></button>
                     <div class="dropdown-content" data-ng-show="isAdmin">
                         <a ui-sref="adminPanel">Admin Panel</a>
                         <a ui-sref="main">Project Dashboard</a>
                     </div>
-                </div>
+                </div>-->
             </div>
             <div class="col-md-4">
 
@@ -21,12 +21,14 @@
             </div>
         </div>
     </div>
-    <div data-ng-show="isAdmin">
         <div class="modal-content">
             <br />
             <div class="row " style="display:block;">
+
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="satisfication">
+
+
                         <div class="col-md-6">
                             <span style="font-size: 12pt;cursor:default"> <b>Team</b> <br /> Satisfaction</span>
                             <br />
@@ -36,13 +38,11 @@
                                 </div>
                             </div>
                             <div id="canvas-holder2">
-                                <label class="chart-title2" ng-show="ChartObject.Trend" style="font-size:35px">{{ChartObject.Rating}}
+                                <label class="chart-title2"  style="font-size:35px">{{ChartObject.Rating}}
                                 <span style="font-size:22px">/10</span>
-                                <img src="/Content/Images/up.png" style="height:18px; z-index: -1;">
-                                </label>
-                                <label class="chart-title2" ng-hide="ChartObject.Trend" style="font-size:35px">{{ChartObject.Rating}}
-                                <span style="font-size:22px">/10</span>
-                                 <img src="/Content/Images/down.png" style="height:18px; z-index: -1;">
+                                <img ng-show="ChartObject.Trend" src="/Content/Images/up.png" style="height:18px; z-index: -1;">
+                                <img ng-show="!ChartObject.Trend && !ChartObject.isEqual" src="/Content/Images/down.png" style="height:18px; z-index: -1;">
+                                <img ng-show="ChartObject.isEqual" src="/Content/Images/equal.png" style=" z-index -1;">
                                 </label>
                                 <canvas id="myChart"
                                         class="chart chart-doughnut"
@@ -55,35 +55,37 @@
                             </div>
                             <br />
                         </div>
+
+
                         <div class="col-md-6">
                             <br />
                             <div data-ng-show="Trends">
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <a data-ng-click="isTrends()" style="font-size:16px;cursor: pointer;">Trends</a>
+                                        <a data-ng-click="isTrends()" style="font-size:16px;cursor: pointer;"><b>Trends</b></a>
                                     </div>
                                     <div class="col-md-1">/</div>
                                     <div class="col-md-3">
                                         <a data-ng-click="isProjects()" style="cursor: pointer;">Projects</a>
                                     </div>
                                 </div>
-                                <div style="height:155px; overflow-x: hidden">
+                                <div style="height:175px; overflow-x: hidden">
                                     <table id="Satisfaction Trends" style="width:100%;">
                                         <tr>
-                                            <th>   </th>
+                                            <th style="font-size:12px;padding-left:18px;padding-right:0px">Year</th>
+                                            <th style="font-size:12px;padding-left:0px">Period</th>
+                                            <th style="font-size:12px;padding-left:3px">Rating</th>
+                                            <th></th>
                                         </tr>
                                         <tr data-ng-repeat="project in selectedSummary" style="border-bottom: 1px solid #ccc;">
                                             <td style="padding-left:15px;width:30%">{{project.Year}}</td>
-                                            <td style="padding-left:0px;width:20%">{{project.Quarter}}</td>
+                                            <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
                                             <td style="padding-left:15px">{{project.Rating}}</td>
                                             <td style="padding-left:20px">
-                                                <span ng-show="project.Trend">
-                                                    <img src="/Content/Images/up.png">
-                                                </span>
-                                                <span ng-hide="project.Trend">
-                                                    <img src="/Content/Images/down.png">
-                                                </span>
+                                                    <img ng-show="project.Trend" src="/Content/Images/up.png">
+                                                    <img ng-show="!project.Trend && !project.isEqual" src="/Content/Images/down.png">
+                                                    <img  ng-show="project.isEqual" src="/Content/Images/equal.png" >
                                             </td>
                                         <tr>
                                             <td data-ng-show="TeamShowMore" style="padding-left:15px;font-size:12px;cursor: pointer;"><a>More</a></td>
@@ -101,14 +103,22 @@
                                     </div>
                                     <div class="col-md-1">/</div>
                                     <div class="col-md-3">
-                                        <a data-ng-click="isProjects()" style="font-size:16px;cursor:pointer">Projects</a>
+                                        <a data-ng-click="isProjects()" style="font-size:16px;cursor:pointer"><b>Projects</b></a>
                                     </div>
-
                                 </div>
-                                <div class="scrollbar" id="style-2" style="overflow:auto; height:155px; overflow-x: hidden">
-                                <table id="Satisfaction Trends" style="width:100%;">
+                                <div class="scrollbar" id="style-2" style="overflow:auto; height:175px; overflow-x: hidden">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <a style="font-size:12px;padding-left:25px"><b> Name </b> </a>
+                                        </div>
+                                        <div class="col-md-5"></div>
+                                        <div class="col-md-5">
+                                            <a style="font-size:12px"><b>Rating</b>   </a>
+                                        </div>
+                                    </div>
+                                    <table id="Satisfaction Trends" style="width:100%;">
                                    <tr>
-                                       <th>   </th>
+                                      
                                    </tr>
                                     <tr data-ng-repeat="project in TeamSatisfactionProjects" style="border-bottom: 1px solid #ccc;">
                                         <td style="padding-left:15px;width:60%">{{project.Name}}</td>
@@ -120,8 +130,7 @@
                                     </div>
                             </div>
 
-                            <br />
-                            <a style="padding-left:60px;cursor:pointer">Completed Amount</a>
+                            <a style="padding-left:30px;cursor:pointer;padding-top:5px">{{TeamSatisfactionCount}} user(s) completed for {{chartTime}} </a>
 
                         </div>
                     </div>
@@ -130,6 +139,7 @@
 
                 <div class="col-xs-6 col-sm-6 col-md-6">
                     <div class="satisfication">
+
                         <div class="col-md-6">
                             <span style="font-size: 12pt;padding-left:0px;cursor:default"> <b>Customer </b><br />  Satisfaction</span>
                             <br />
@@ -139,12 +149,12 @@
                                 </div>
                             </div>
                             <div id="canvas-holder2">
-                                <label class="chart-title2" ng-show="CustomerChartObject.Trend" style="font-size:35px">{{CustomerChartObject.Rating}}
+                                <label class="chart-title2"  style="font-size:35px">{{CustomerChartObject.Rating}}
                                 <span style="font-size:22px">/5 </span>
-                                <img src="/Content/Images/up.png" style="height:18px; z-index: -1;"></label>
-                                <label class="chart-title2" ng-hide="CustomerChartObject.Trend" style="font-size:35px">{{CustomerChartObject.Rating}}
-                                <span style="font-size:22px">/5 </span>
-                                <img src="/Content/Images/down.png" style="height:18px; z-index: -1;"></label>
+                                <img ng-show="CustomerChartObject.Trend" src="/Content/Images/up.png" style="height:18px; z-index: -1;">
+                                <img ng-show="!CustomerChartObject.Trend && !CustomerChartObject.isEqual" src="/Content/Images/down.png" style="height:18px; z-index: -1;">
+                                <img ng-show="CustomerChartObject.isEqual" src="/Content/Images/equal.png" style="height:18px; z-index: -1;">
+                                </label>
                                 <canvas id="myChart"
                                         class="chart chart-doughnut"
                                         chart-data="Customerdata"
@@ -162,40 +172,39 @@
                                 <div class="row">
                                     <div class="col-md-1"></div>
                                     <div class="col-md-3">
-                                        <a data-ng-click="isCustomerTrends()" style="font-size:16px;cursor:pointer">Trends</a>
+                                        <a data-ng-click="isCustomerTrends()" style="font-size:16px;cursor:pointer"><b>Trends</b></a>
                                     </div>
                                     <div class="col-md-1">/</div>
                                     <div class="col-md-3">
                                         <a data-ng-click="isCustomerProjects()" style="cursor:pointer">Projects</a>
                                     </div>
                                 </div>
-                                <div style="height:155px">
-                                    <table id="Satisfaction Trends" style="width:100%;">
+                                <div style="height:175px">
+                                    <table id="Satisfaction Trends" style="width:100%">
                                         <tr>
+                                            <th style="font-size:12px;padding-left:18px;padding-right:0px">Year</th>
+                                            <th style="font-size:12px;padding-left:0px">Period</th>
+                                            <th style="font-size:12px;padding-left:3px">Rating</th>
                                             <th></th>
                                         </tr>
                                         <tr data-ng-repeat="project in selectedCustomerSummary" style="border-bottom: 1px solid #ccc;">
-                                            <td style="padding-left:15px">{{project.Year}}</td>
-                                            <td style="padding-left:0px">{{project.Quarter}}</td>
+                                            <td style="padding-left:15px;width:30%">{{project.Year}}</td>
+                                            <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
                                             <td style="padding-left:15px">{{project.Rating}}</td>
-                                            <td style="padding-left:20px">
-                                                <span ng-show="project.Trend">
-                                                    <img src="/Content/Images/up.png">
-                                                </span>
-                                                <span ng-hide="project.Trend">
-                                                    <img src="/Content/Images/down.png">
-                                                </span>
+                                            <td style="padding-left:0px">
+                                                    <img ng-show="project.Trend"  src="/Content/Images/up.png">
+                                                    <img ng-show="!project.Trend && !project.isEqual" src="/Content/Images/down.png">
+                                                    <img ng-show="project.isEqual" src="/Content/Images/equal.png" style="height:18px;">
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-ng-show="CustomerShowMore" style="padding-left:15px;font-size:12px;cursor:pointer"><a>More</a></td>
                                         </tr>
-
                                     </table>
                                     </div>
                                 </div>
 
-                            <div data-ng-show="CustomerProjects">
+                            <div data-ng-show="CustomerProjects" style="height:220px;">
                                 <br />
                                 <div class="row">
                                     <div class="col-md-1"></div>
@@ -204,74 +213,177 @@
                                     </div>
                                     <div class="col-md-1">/</div>
                                     <div class="col-md-3">
-                                        <a data-ng-click="isCustomerProjects()" style="font-size:16px;cursor:pointer">Projects</a>
+                                        <a data-ng-click="isCustomerProjects()" style="font-size:16px;cursor:pointer"><b>Projects</b></a>
                                     </div>
 
                                 </div>
-                                <div class="scrollbar" id="style-2" style="overflow:auto; height:155px; overflow-x: hidden">
-                                    <table id="Satisfaction Trends" style="width:100%;">
+                                <div class="scrollbar" id="style-2" style="overflow:auto; height:175px;  overflow-x: hidden">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <a style="font-size:12px;padding-left:25px"><b> Name </b> </a>
+                                        </div>
+                                        <div class="col-md-5"></div>
+                                        <div class="col-md-5">
+                                            <a style="font-size:12px"><b>Rating</b>   </a>
+                                        </div>
+                                    </div>
+                                    <table id="Satisfaction Trends" style="width:100%;height:90%">
                                         <tr>
-                                            <th>   </th>
+                                            
                                         </tr>
                                         <tr data-ng-repeat="project in CustomerSatisfactionProjects" style="border-bottom: 1px solid #ccc;">
                                             <td style="padding-left:15px;width:60%">{{project.Name}}</td>
                                             <td style="padding-left:20px">{{project.Rating}}</td>
                                         </tr>
-                                        
                                     </table>
                                     </div>
                                 </div>
-                             <br />
-                            <a style="padding-left:60px;cursor:pointer">Completed Amount</a>
+                            <a style="padding-left:20px;cursor:pointer;margin-top:15px">{{NumberofProjects}} Project(s) completed for {{CustomerchartTime}} </a>
                             </div>
                     </div>
                 </div>
             </div>
 
             <br />
-
-            <div class="row "style="display:block;">
-                <div class="col-xs-6 col-sm-6 col-md-6">
-                    <div class="col-xs-8 col-sm-8 col-md-8">
-                        <div class="row " style="display:block;">
-                            <div class="CD_Widget">
-                                <span id="widgetTitle">SPEC</span>
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row" style="display:block;">
-                            <div class="CD_Widget">
-                                <span id="widgetTitle">Process Complience</span>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-4 col-sm-4 col-md-4">
-                        <div class="riskWidget">
-                            <span id="widgetTitle">Risk</span>
-
-                        </div>
-                    </div>
-                </div>
-                
-                    <div class="col-xs-6 col-sm-6 col-md-6">
-                        <div class="row" style="display:block;">
-                            <div class="CD_Widget ">
-                                <span id="widgetTitle">Billable</span>
-
-                            </div>
-                        </div>
-                        <br />
-                        <div class="row" style="display:block;">
-                            <div class="CD_Widget">
-                                <span id="widgetTitle">NPS</span>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
             
         </div>
     </div>
+
+<div class="modal-content">
+<div class="row " style="display:block;">
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="col-xs-8 col-sm-8 col-md-8">
+            <div class="row " style="display:block;">
+                <div class="CD_Widget">
+                    <span id="widgetTitle">SPEC</span>
+                </div>
+            </div>
+            <br />
+
+
+            <div data-ng-controller="ComplienceController">
+                <div class="row" style="display:block;">
+                    <div class="CD_Widget">
+                        <div class="col-md-4">
+                            <span style="font-size: 12pt;cursor:default"> <b>Process</b> <br /> Complience</span>
+                            <br />
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <hr style="border-color:coral;height:2px;margin:0px" />
+                                </div>
+                            </div>
+                            <div >
+
+                                <div class="row" style="font-size:55px;font-weight:800;padding-left:20px;padding-top:10px">
+                                    {{MainObject.Rating}}
+                                    <img ng-show="!MainObject.Trend" src="/Content/Images/up.png" style="height:18px; z-index: -1;">
+                                    <img ng-show="MainObject.Trend && !MainObject.isEqual" src="/Content/Images/down.png" style="height:18px; z-index: -1;">
+                                    <img ng-show="MainObject.isEqual" src="/Content/Images/equal.png" style="z-index:-1;">
+                                </div>
+                                <div style="padding-left:14px">
+                                    {{ShowingHalf}}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div data-ng-show="Trends">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isTrends()" style="font-size:16px;cursor: pointer;"><b>Trends</b></a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isProjects()" style="cursor: pointer;">Projects</a>
+                                    </div>
+                                </div>
+                                <div style="height:150px">
+                                    <table id="Complience Trends" style="width:100%">
+                                        <tr>
+                                            <th style="font-size:12px;padding-left:18px;padding-right:0px">Year</th>
+                                            <th style="font-size:12px;padding-left:0px">Period</th>
+                                            <th style="font-size:12px;padding-left:3px">Rating</th>
+                                            <th></th>
+                                        </tr>
+                                        <tr data-ng-repeat="project in ProcessComplienceData" style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px;width:30%">{{project.Year}}</td>
+                                            <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
+                                            <td style="padding-left:15px">{{project.Rating}}</td>
+                                            <td style="padding-left:0px">
+                                                <img ng-show="!project.Trend" src="/Content/Images/up.png">
+                                                <img ng-show="project.Trend && !project.isEqual" src="/Content/Images/down.png">
+                                                <img ng-show="project.isEqual" src="/Content/Images/equal.png" style="height:18px;">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td data-ng-show="ShowMore" style="padding-left:15px;font-size:12px;cursor:pointer"><a>More</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                </div>
+                            <div data-ng-show="Projects">
+                                <div class="row">
+                                    <div class="col-md-1"></div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isTrends()" style="cursor: pointer;">Trends</a>
+                                    </div>
+                                    <div class="col-md-1">/</div>
+                                    <div class="col-md-3">
+                                        <a data-ng-click="isProjects()" style="font-size:16px;cursor:pointer"><b>Projects</b></a>
+                                    </div>
+                                </div>
+                                <div class="scrollbar" id="style-2" style="overflow:auto;height:150px;  overflow-x: hidden">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <a style="font-size:12px;padding-left:25px"><b> Name </b> </a>
+                                        </div>
+                                        <div class="col-md-5"></div>
+                                        <div class="col-md-5">
+                                            <a style="font-size:12px"><b>Rating</b>   </a>
+                                        </div>
+                                    </div>
+                                    <table id="Satisfaction Trends" style="width:100%;height:90%">
+                                        <tr>
+                                            
+                                        </tr>
+                                        <tr data-ng-repeat="project in ProcessComplienceProjects" style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px;width:60%">{{project.Name}}</td>
+                                            <td style="padding-left:20px">{{project.Rating}}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                          
+                             </div>
+                            <a style="cursor:pointer;margin-top:15px">{{NumberofProjects}} Project(s) completed for {{ShowingHalf}} </a>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <div class="riskWidget">
+                <span id="widgetTitle">Risk</span>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6">
+        <div class="row" style="display:block;">
+            <div class="CD_Widget ">
+                <span id="widgetTitle">Billable</span>
+            </div>
+        </div>
+        <br />
+        <div class="row" style="display:block;">
+            <div class="CD_Widget">
+                <span id="widgetTitle">NPS</span>
+            </div>
+        </div>
+    </div>
+
+</div>
 </div>

@@ -75,7 +75,8 @@ namespace ProDashBoard
                     //Coperate Dashboard
 
                     "~/app/CooperateDashboard/coHomeController.js",
-                    "~/app/AuthHandler/AuthController.js"
+                    "~/app/AuthHandler/AuthController.js",
+                    "~/app/CooperateDashboard/ComplienceController.js"
                     ));
 
         }

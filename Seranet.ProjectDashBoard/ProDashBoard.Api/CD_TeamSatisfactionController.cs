@@ -33,5 +33,13 @@ namespace ProDashBoard.Api
             List<CD_ProjectSatisfactionData> returnData = repo.GetProjects(Year,Quarter);
             return Request.CreateResponse(HttpStatusCode.OK, returnData);
         }
+
+        //Getting Projects
+        [HttpGet, Route("api/CD_TeamSatisfactionController/getProjectsCount/{Year}/{Quarter}")]
+        public HttpResponseMessage getCompletion(int Year, int Quarter)
+        {
+            int returnData = repo.getCompletion(Year, Quarter);
+            return Request.CreateResponse(HttpStatusCode.OK, returnData);
+        }
     }
 }

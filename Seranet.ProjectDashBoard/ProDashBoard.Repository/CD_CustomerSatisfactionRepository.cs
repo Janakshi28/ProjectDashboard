@@ -31,7 +31,7 @@ namespace ProDashBoard.Data
 
         public List<CD_ProjectSatisfactionData> GetProjects(int year, int quarter)
         {
-            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.Name, sumr.Rating FROM CustomerSatisfactionSummary sumr join Project pj on sumr.ProjectId = pj.Id where sumr.Year = " + year + " and sumr.Quarter =" + quarter + "; ").Select(d => new CD_ProjectSatisfactionData { Name = d.Name, Rating = d.Rating }).ToList();
+            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.Name, sumr.Rating FROM CustomerSatisfactionSummary sumr join Project pj on sumr.ProjectId = pj.Id where sumr.Year = " + year + " and sumr.Quarter =" + quarter + " and sumr.Rating !=0 order by sumr.Rating desc; ").Select(d => new CD_ProjectSatisfactionData { Name = d.Name, Rating = d.Rating }).ToList();
 
             return resultsArray;
         }

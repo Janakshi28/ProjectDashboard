@@ -12,5 +12,6 @@ namespace ProDashBoard.Model
         public String Rating { get; set; }
         public string Completion { get; set; }
         public bool Trend { get; set; }
+        public bool isEqual { get; set; }
     }
 }

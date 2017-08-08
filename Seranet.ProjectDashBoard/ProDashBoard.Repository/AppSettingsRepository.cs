@@ -85,5 +85,43 @@ namespace ProDashBoard.Data
             }
             return customSetting.Value;
         }
+
+        public bool getCorporateDashboard()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["CorporateDashboard"];
+
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("CorporateDashboard " + customSetting.Value);
+                    if (customSetting.Value == "true")
+                    {
+                        return true;
+                    }
+                    else if (customSetting.Value == "false")
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Debug.WriteLine("Check web config");
+                        return false;
+                    }
+
+
+                }
+                else
+                {
+                    Debug.WriteLine("No CorporateDashboard application string");
+                    return false;
+                }
+            }else { 
+            return false;
+            }
+        }
+
     }
 }

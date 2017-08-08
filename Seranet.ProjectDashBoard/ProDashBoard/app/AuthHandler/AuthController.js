@@ -22,19 +22,21 @@
         });
         }
 
+        
+
         //Check the Admin level and Redirect to the page
         function isAdmin() {
             $http.get("api/Authorization/getAdminRights").success(function (data) {
                 var isAdmin = data;
-                console.log(isAdmin);
-                if (isAdmin) {
-                    console.log("admin");
-                    //window.location.replace("#/coHome");
-                    window.location.replace("#/coHome");
-                } else {
-                    console.log("not an admin");
-                    window.location.replace("#/home");
-                }
+                $http.get("api/AppSettings/getCorporateDashboard").success(function (data2) {
+                    if (isAdmin && data2) {
+                        //window.location.replace("#/coHome");
+                        window.location.replace("#/coHome");
+                    } else {
+                        window.location.replace("#/home");
+                    }
+                }).error(function () {
+                });
             })
             .error(function () {
             });

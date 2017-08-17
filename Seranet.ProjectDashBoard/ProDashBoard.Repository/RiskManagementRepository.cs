@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Web;
@@ -38,7 +39,7 @@ namespace ProDashBoard.Repository
                 }
                 using (spClient.ClientContext ctx = new spClient.ClientContext(newriskUrl))
                 {
-                    
+
                     var passWord = new SecureString();
                     foreach (var c in "intel@123") passWord.AppendChar(c);
                     ctx.Credentials = new spClient.SharePointOnlineCredentials("systemriskreview@99x.lk", passWord);
@@ -67,7 +68,7 @@ namespace ProDashBoard.Repository
             Boolean isAnyRiskDataAvailable = false;
             foreach (Project subproject in subProjects)
             {
-                CommonData commonData=commonRepo.getSelectedProjectCommonData(subproject.Id);
+                CommonData commonData = commonRepo.getSelectedProjectCommonData(subproject.Id);
                 if (commonData != null && commonData.RiskPageUrl != null)
                 {
                     string query = "<View><Query><OrderBy><FieldRef Name = 'RiskValue' Ascending = 'FALSE' /></OrderBy></Query><RowLimit>1</RowLimit></View> ";
@@ -119,26 +120,43 @@ namespace ProDashBoard.Repository
                             totalsubProjectRisks.Add(optionalRiskData);
                         }
                     }
-                    else {
+                    else
+                    {
                         RiskData riskData = new RiskData();
                         riskData.subProject = subproject;
                         riskData.riskValue = -1;
                         totalsubProjectRisks.Add(riskData);
                     }
                 }
-                else {
+                else
+                {
                     RiskData riskData = new RiskData();
                     riskData.subProject = subproject;
                     riskData.riskValue = -1;
                     totalsubProjectRisks.Add(riskData);
                 }
             }
-            if (!isAnyRiskDataAvailable) {
+            if (!isAnyRiskDataAvailable)
+            {
                 totalsubProjectRisks = new List<RiskData>();
             }
             Debug.WriteLine("-------------");
             Debug.WriteLine(totalsubProjectRisks.Count);
             return totalsubProjectRisks;
+        }
+
+        public string getRiskList(string url)
+        {
+            using (var client = new WebClient())
+            {
+                client.Headers.Add("X-FORMS_BASED_AUTH_ACCEPTED", "f");
+                //client.Credentials = credentials;
+                client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
+                client.Headers.Add(HttpRequestHeader.Accept, "application/json");
+                var endpointUri = url;
+                var result = client.DownloadString(endpointUri);
+                return result;
+            }
         }
     }
 }

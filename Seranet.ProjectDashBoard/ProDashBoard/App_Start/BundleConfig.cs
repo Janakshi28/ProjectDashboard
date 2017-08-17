@@ -32,7 +32,9 @@ namespace ProDashBoard
                        "~/Scripts/angular-spinner.min.js",
                        "~/Scripts/pie-chart.min.js",
                        "~/Scripts/bootstrap-select.min.js",
-                       "~/Scripts/angular-sanitize.js"
+                       "~/Scripts/angular-sanitize.js",
+                        "~/Scripts/dx.viz.debug.js",
+                        "~/Scripts/angularjs-gauge.js"
                        ));
 
 
@@ -76,7 +78,9 @@ namespace ProDashBoard
 
                     "~/app/CooperateDashboard/coHomeController.js",
                     "~/app/AuthHandler/AuthController.js",
-                    "~/app/CooperateDashboard/ComplienceController.js"
+                    "~/app/CooperateDashboard/ComplienceController.js",
+                    "~/app/CooperateDashboard/RiskController.js",
+                    "~/app/CooperateDashboard/NPSController.js"
                     ));
 
         }

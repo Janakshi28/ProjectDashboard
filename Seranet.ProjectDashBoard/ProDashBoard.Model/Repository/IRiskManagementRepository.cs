@@ -10,5 +10,6 @@ namespace ProDashBoard.Model.Repository
     public interface IRiskManagementRepository
     {
         List<RiskData> getTotalRisksForSelectAccountSubProjects(List<Project> subProjects);
+        string getRiskList(string url);
     }
 }

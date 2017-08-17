@@ -12,5 +12,8 @@ namespace ProDashBoard.Model.Repository
         string getSpecLink();
         string getProcessComplianceLink();
         bool getCorporateDashboard();
+        string getRiskLink();
+        string getRiskURL();
+        int getNPSQuestionNo();
     }
 }

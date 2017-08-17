@@ -15,10 +15,13 @@ namespace ProDashBoard.Api
         private ProjectRepository projectRepo;
         private RiskManagementRepository riskRepo;
         private AuthorizationRepository authRepo;
+        private AppSettingsRepository appRepo;
+
         public RiskManagementController() {
             projectRepo = new ProjectRepository();
             riskRepo = new RiskManagementRepository();
             authRepo = new AuthorizationRepository();
+            appRepo = new AppSettingsRepository();
 
         }
         // GET api/<controller>
@@ -65,6 +68,14 @@ namespace ProDashBoard.Api
                 return Request.CreateResponse(HttpStatusCode.Forbidden);
             }
 
+        }
+
+        [HttpGet, Route("api/RiskManagement/getRiskList")]
+        public string getRiskList()
+        {
+            string url = appRepo.getRiskLink();
+            string risklist = riskRepo.getRiskList(url);
+            return risklist;
         }
     }
 }

@@ -134,6 +134,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="CD_NPSController.cs" />
     <Compile Include="ProcessComplianceQPController.cs" />
     <Compile Include="ProcessComplianceResultsController.cs" />
     <Compile Include="ProcessComplianceSummaryController.cs" />

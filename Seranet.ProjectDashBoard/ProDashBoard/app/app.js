@@ -1,5 +1,5 @@
 ﻿//set angular module
-var app = angular.module("app", ['ui.router', 'ui.bootstrap', 'chart.js', 'toaster', 'ngAnimate', 'ngMaterial', 'HiggidyCarousel', 'angularSpinner', 'n3-pie-chart', 'ngSanitize']);
+var app = angular.module("app", ['ui.router', 'ui.bootstrap', 'chart.js', 'toaster', 'ngAnimate', 'ngMaterial', 'HiggidyCarousel', 'angularSpinner', 'n3-pie-chart', 'ngSanitize', 'angularjs-gauge']);
 
 //Configure app Urls
 

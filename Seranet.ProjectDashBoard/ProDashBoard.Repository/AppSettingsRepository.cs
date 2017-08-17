@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Configuration;
 
@@ -123,5 +124,64 @@ namespace ProDashBoard.Data
             }
         }
 
+        public string getRiskLink()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["riskLink"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("riskLink " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No riskLink application string");
+            }
+
+          
+                return customSetting.Value;
+        }
+
+        public string getRiskURL()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["riskDashboard"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("riskDashboard " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No riskDashboard application string");
+            }
+
+
+            return customSetting.Value;
+        }
+
+        public int getNPSQuestionNo()
+        {
+            KeyValueConfigurationElement customSetting = null;
+            if (rootWebConfig.AppSettings.Settings.Count > 0)
+            {
+                customSetting =
+                    rootWebConfig.AppSettings.Settings["NPSquestionNo"];
+                if (customSetting != null)
+                {
+                    Debug.WriteLine("NPSquestionNo " + customSetting.Value);
+
+                }
+                else
+                    Debug.WriteLine("No NPSquestionNo application string");
+            }
+
+
+            return Int32.Parse(customSetting.Value);
+        }
     }
 }

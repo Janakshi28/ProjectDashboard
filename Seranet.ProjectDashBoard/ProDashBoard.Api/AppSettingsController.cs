@@ -48,5 +48,12 @@ namespace ProDashBoard.Api
         {
             return repo.getCorporateDashboard();
         }
+
+        [HttpGet, Route("api/AppSettings/getRiskDashboard")]
+        public string getRiskDashboard()
+        {
+            return repo.getRiskURL();
+        }
+
     }
 }

@@ -136,6 +136,7 @@
     <Compile Include="AppSettingsRepository.cs" />
     <Compile Include="AuthorizationRepository.cs" />
     <Compile Include="CD_CustomerSatisfactionRepository.cs" />
+    <Compile Include="CD_NPSRepository.cs" />
     <Compile Include="CD_ProcessComplienceRepository.cs" />
     <Compile Include="CD_TeamSatisfactionRepository.cs" />
     <Compile Include="CommonDataRepository.cs" />

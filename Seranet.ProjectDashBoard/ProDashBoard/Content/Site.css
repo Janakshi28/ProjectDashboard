@@ -1184,16 +1184,44 @@ md-card {
     height: 10%;
     /*max-width:370px;*/
 }
+.NPS_Widget{
+     padding-top:8px;
+    min-height: 200px;
+    max-width:610px;
+    -webkit-box-shadow: 0 0 2px black;
+    box-shadow: 1px 1px 1px #c1c1c1;
+    background-color: #FFFFFF;
+    border-radius: 12px;
+    height: 10%;
+}
 
 .riskWidget {
     min-height: 420px;
     -webkit-box-shadow: 0 0 2px black;
     box-shadow: 1px 1px 1px #c1c1c1;
-    cursor: pointer;
+    cursor:pointer;
     background-color: #FFFFFF;
     border-radius: 12px;
     height: 10%;
     /*max-width:370px;*/
+}
+.riskheaders{
+   font-size:12px;
+   font-weight:600;
+}
+.riskitem{
+    font-size:22px;
+    font-weight:800;
+}
+.riskhr{
+    height:5px;
+    margin-top:0px;
+    margin-bottom:0px;
+    margin-left:20px;
+    margin-right:20px;
+    border-color:#b3b3b3;
+   align-self:stretch;
+    
 }
 
 
@@ -1242,3 +1270,31 @@ md-card {
 	background-color: #F5F5F5;
 }
 
+#chart-demo {
+    width: 100%;
+}
+
+#rectangleNeedle, #twoColorNeedle, #triangleNeedle, #rangebar, #textCloud, #triangleMarker {
+    display: inline-block;
+}
+
+#rectangleNeedle, #twoColorNeedle, #triangleNeedle {
+    width: 33%;
+}
+
+#rangebar, #triangleMarker {
+    width: 32%;
+}
+
+#textCloud {
+    width: 35%;
+    vertical-align: bottom;
+}
+
+.long-title h3 {
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+    font-weight: 200;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+}

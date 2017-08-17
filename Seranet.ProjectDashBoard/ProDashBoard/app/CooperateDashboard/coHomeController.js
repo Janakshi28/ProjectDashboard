@@ -26,9 +26,9 @@
             percentageInnerCutout: 80,
             animation: true
         };
-        $scope.lowColour = ['#e22626', '#e47474'];
-        $scope.mediumColour = ['#FD9C34', '#FDC52A'];
-        $scope.highColour = ['#4edab3', '#8accb9'];
+        $scope.lowColour = ['#e22626', '#e2dede'];
+        $scope.mediumColour = ['#FD9C34', '#e2dede'];
+        $scope.highColour = ['#4edab3', '#e2dede'];
 
         //Chart TeamSatisfaction
         function TeamSatisfactionData() {

@@ -21,6 +21,9 @@
         $scope.TeamShowMore = false;
         $scope.CustomerShowMore = false;
 
+        $scope.teamSatHover = [["0 - 4", "Low", 'teamlev0'], ["5 - 7", "Medium", 'teamlev1'], ["8 - 10", "Good", 'teamlev2'], ["Level 3", "Excellent"]];
+        $scope.cusSatHover = [["0 - 2", "Low", 'teamlev0'], ["3 - 4", "Medium", 'teamlev1'], [" 4 Above", "Good", 'teamlev2'], ["Level 3", "Excellent"]];
+
         //Chart Details
         $scope.options = {
             percentageInnerCutout: 80,
@@ -220,6 +223,24 @@
                 $scope.error = "An Error has occured while loading posts!";
                 $scope.loading = false;
             });
+        }
+
+        $scope.teamSatHoverOver = function () {
+            $scope.hoverValues = $scope.teamSatHover;
+        }
+
+        $scope.teamSatHoverLeave = function () {
+            $scope.hoverValues = "";
+
+        }
+
+        $scope.cusSatHoverOver = function () {
+            $scope.hoverValues = $scope.cusSatHover;
+        }
+
+        $scope.cusSatHoverLeave = function () {
+            $scope.hoverValues = "";
+
         }
 
     }

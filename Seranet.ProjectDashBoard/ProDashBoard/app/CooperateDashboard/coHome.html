@@ -30,6 +30,7 @@
 
 
                     <div class="col-md-6">
+
                         <span style="font-size: 12pt;cursor:default"> <b>Team</b> <br /> Satisfaction</span>
                         <br />
                         <div class="row">
@@ -37,7 +38,33 @@
                                 <hr style="border-color:coral;height:2px;margin:0px" />
                             </div>
                         </div>
-                        <div id="canvas-holder2">
+                        <div id="canvas-holder2" data-ng-mouseover="teamSatHoverOver()" data-ng-mouseleave="teamSatHoverLeave()">
+                            <md-tooltip id="slider-tooltip" class="large" md-direction="left" md-autohide="true">
+                                <div style="margin:0 auto;">
+                                    <div style="padding-left:10px;">
+                                        <div data-ng-if="hoverValues!=''" style="line-height:0.2pt;margin:5px;padding-top:5px;"><b>Legends</b></div>
+                                        <div class="row" style="padding-left:15px;line-height:0.2pt;">
+                                            <table style="width:100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td data-ng-repeat="hoverData in hoverValues" style="width:270px;">
+                                                            <div style="display:inline-block;padding-top:10px;">
+                                                                <label class={{hoverData[2]}} style="width:25px;height:25px;border-radius:5px;"></label>
+                                                                <label style="height:25px;padding-right:15px;display:inline-block;align-content:flex-start;font-size:0;margin-left:10px;color:white;">
+                                                                    <label class="legendValue legendLabel" style="margin-bottom:0px;">{{hoverData[0]}}</label>
+                                                                    <label class="legendDescription legendLabel" style="margin-bottom:0px;">{{hoverData[1]}}</label>
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-tooltip>    
                             <label class="chart-title2" style="font-size:35px">
                                 {{ChartObject.Rating}}
                                 <span style="font-size:22px">/10</span>
@@ -139,7 +166,9 @@
             <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="satisfication">
 
+
                     <div class="col-md-6">
+
                         <span style="font-size: 12pt;padding-left:0px;cursor:default"> <b>Customer </b><br />  Satisfaction</span>
                         <br />
                         <div class="row">
@@ -147,7 +176,32 @@
                                 <hr style="border-color:coral;height:2px;margin:0px" />
                             </div>
                         </div>
-                        <div id="canvas-holder2">
+                        <div id="canvas-holder2" data-ng-mouseover="cusSatHoverOver()" data-ng-mouseleave="cusSatHoverLeave()">
+                            <md-tooltip id="slider-tooltip" class="large" md-direction="left" md-autohide="true">
+                                <div style="margin:0 auto;">
+                                    <div style="padding-left:10px;">
+                                        <div data-ng-if="hoverValues!=''" style="line-height:0.2pt;margin:5px;padding-top:5px;"><b>Legends</b></div>
+                                        <div class="row" style="padding-left:15px;line-height:0.2pt;">
+                                            <table style="width:100%;">
+                                                <tbody>
+                                                    <tr>
+                                                        <td data-ng-repeat="hoverData in hoverValues" style="width:270px;">
+                                                            <div style="display:inline-block;padding-top:10px;">
+                                                                <label class={{hoverData[2]}} style="width:25px;height:25px;border-radius:5px;"></label>
+                                                                <label style="height:25px;padding-right:15px;display:inline-block;align-content:flex-start;font-size:0;margin-left:10px;color:white;">
+                                                                    <label class="legendValue legendLabel" style="margin-bottom:0px;">{{hoverData[0]}}</label>
+                                                                    <label class="legendDescription legendLabel" style="margin-bottom:0px;">{{hoverData[1]}}</label>
+                                                                </label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </md-tooltip> 
                             <label class="chart-title2" style="font-size:35px">
                                 {{CustomerChartObject.Rating}}
                                 <span style="font-size:22px">/5 </span>
@@ -447,7 +501,7 @@
                                 </div>
                             </div>
                             <div style="padding-left:30px">
-                                     <ng-gauge size="170" type="semi" thick="5" min="0" max="10" value="value" cap="round" label={{ShowingHalf}} foreground-color={{color}} background-color={{backgroundcolor}} append="/10" ></ng-gauge>
+                                     <ng-gauge size="170" type="semi" thick="15" min="0" max="10" value="value" cap="round" label={{ShowingHalf}} foreground-color={{color}} background-color={{backgroundcolor}} append="/10" ></ng-gauge>
                                
                             </div>
                             </div>

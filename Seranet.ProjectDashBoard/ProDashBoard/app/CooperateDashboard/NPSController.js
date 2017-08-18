@@ -85,6 +85,14 @@
             $scope.Projects = true;
         }
 
+        $scope.specHoverOver = function () {
+            $scope.hoverValues = $scope.specHover;
+        }
+
+        $scope.specHoverLeave = function () {
+            $scope.hoverValues = "";
+
+        }
        
     }
 })();

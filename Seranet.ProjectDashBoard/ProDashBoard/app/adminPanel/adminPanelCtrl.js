@@ -141,7 +141,7 @@
     function deactivateEmployees() {
         var sendingData = JSON.stringify($scope.employeeNames);
         $http.post('api/TeamMembers/DeactivateEmployees', $scope.employeeNames).success(function (data) {
-            //AccountsInitializer();
+            AccountsInitializer();
         })
         .error(function () {
             $scope.error = "An Error has occured while loading posts!";

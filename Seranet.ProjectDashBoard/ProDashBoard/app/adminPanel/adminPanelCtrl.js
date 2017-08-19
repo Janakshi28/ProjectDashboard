@@ -60,6 +60,7 @@
                       $scope.employeeNames.push(value.id);
                     });
                     addEmployees();
+                    deactivateEmployees();
                   })
           .error(function (data, status, headers, config) {
             console.log(data);
@@ -135,6 +136,16 @@
       .error(function () {
         $scope.error = "An Error has occured while loading posts!";
       });
+    }
+
+    function deactivateEmployees() {
+        var sendingData = JSON.stringify($scope.employeeNames);
+        $http.post('api/TeamMembers/DeactivateEmployees', $scope.employeeNames).success(function (data) {
+            //AccountsInitializer();
+        })
+        .error(function () {
+            $scope.error = "An Error has occured while loading posts!";
+        });
     }
 
     function addAccount() {

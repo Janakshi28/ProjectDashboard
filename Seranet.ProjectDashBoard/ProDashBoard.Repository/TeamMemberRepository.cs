@@ -55,5 +55,52 @@ namespace ProDashBoard.Data
             }
             return datarows;
         }
+
+        /// <summary>
+        /// Deactivates employees in the employee list and deactivates any mappings between an employee and project(s).
+        /// </summary>
+        /// <param name="usernames"></param>
+        /// <returns></returns>
+        public int DeactivateEmployees(List<string> usernames)
+        {
+            int datarows = 0;
+            if (usernames.Count > 0)
+            {
+                foreach (string name in usernames)
+                {
+                    DeactivateEmployee(name);
+                    DeactivateEmployeeFromAllProjects(name);
+                }
+            }
+
+            return datarows;
+        }
+
+        /// <summary>
+        /// Deactivates an employee based on the employee's name.
+        /// </summary>
+        /// <param name="employeeName"></param>
+        /// <returns></returns>
+        public int DeactivateEmployee(string employeeName)
+        {
+            return this._db.Execute(@"UPDATE TeamMembers SET [Availability] = 0 WHERE [MemberName] = '" + employeeName + "';");
+        }
+
+        /// <summary>
+        /// Deactivates all connections between an employee and projects.
+        /// </summary>
+        /// <param name="employeeName">Employee Name</param>
+        /// <returns></returns>
+        public int DeactivateEmployeeFromAllProjects(string employeeName)
+        {
+            string sqlQuery = "UPDATE [EmployeeProjects] " +
+                "SET Availability = 0 " + 
+                "FROM EmployeeProjects " +
+                "INNER JOIN TeamMembers as TM " +
+                "ON EmpId = TM.ID " +
+                "WHERE TM.MemberName = '" + employeeName + "';";
+
+            return this._db.Execute(sqlQuery);
+        }
     }
 }

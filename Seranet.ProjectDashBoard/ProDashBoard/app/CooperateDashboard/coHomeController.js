@@ -10,8 +10,7 @@
     function CDBController($scope, toaster, $mdDialog, $rootScope, $http, $window, $timeout) {
 
         isAuthorized();
-        TeamSatisfactionData();
-        CustomerSatisfactionData();
+        
        
         //Initial Settings
         $scope.Trends = true;
@@ -42,6 +41,7 @@
                     } else if (parseFloat(data[i].Rating) == parseFloat(data[i + 1].Rating)) {
                         data[i].isEqual = true;
                     }
+
                 }
                
                 $scope.selectedSummary = data;
@@ -50,7 +50,7 @@
                 //Rating values
                 var ChartObject = $scope.selectedSummary.shift();
                 $scope.TeamYear = ChartObject.Year;
-                $scope.TeamQuarter = parseInt(ChartObject.Quarter[1]);
+                $scope.TeamQuarter = parseInt(ChartObject.Quarter);
                 var Rating = ChartObject.Rating;
                 var TeamSatisficationScore = parseFloat(Rating);
                 var TScore = 10 - TeamSatisficationScore;
@@ -59,13 +59,15 @@
                     $scope.selectedSummary.pop();
                     $scope.TeamShowMore = true;
                 }
+                $scope.finalobject = $scope.selectedSummary.pop();
 
                 //Data for Team Satisfaction
                 $scope.ChartObject = ChartObject;
                 $scope.labels = ["Score", "Score"];
                 $scope.data = [TeamSatisficationScore, TScore];
-                $scope.chartTime = ChartObject.Year + "-" + ChartObject.Quarter;
-
+                $scope.chartTime = ChartObject.Year + "-Q" + ChartObject.Quarter;
+                $scope.TeamCompletion = ChartObject.Completion;
+                $scope.BurningIssues = ChartObject.BurningIssues;
                 //color code
                 if (0 < Rating && Rating < 5) {
                     $scope.colors = $scope.lowColour;
@@ -133,18 +135,20 @@
                 var CustomerTeamSatisficationScore = parseFloat(CustomerRating);
                 var CustomerTScore = 5 - CustomerTeamSatisficationScore;
                 $scope.CustomerYear = CustomerChartObject.Year;
-                $scope.CustomerQuarter = parseInt(CustomerChartObject.Quarter[1]);
+                $scope.CustomerQuarter = parseInt(CustomerChartObject.Quarter);
 
                 if ($scope.selectedCustomerSummary.length > 5) {
                     $scope.selectedCustomerSummary.pop();
                     $scope.CustomerShowMore = true;
                 }
+                $scope.Customerfinalobject = $scope.selectedCustomerSummary.pop();
                 //Data for Team Satisfaction
                 $scope.CustomerChartObject = CustomerChartObject;
                 $scope.Customerlabels = ["Score", "Score"];
                 $scope.Customerdata = [CustomerTeamSatisficationScore, CustomerTScore];
-                $scope.CustomerchartTime = CustomerChartObject.Year + "-" + CustomerChartObject.Quarter;
-                console.log($scope.CustomerChartObject);
+                $scope.CustomerchartTime = CustomerChartObject.Year + "-H" + CustomerChartObject.Quarter;
+                $scope.CustomerCompletion = CustomerChartObject.Completion;
+                //console.log($scope.CustomerChartObject);
 
                 //color code
                 if (0 < CustomerRating && CustomerRating < 3) {
@@ -201,7 +205,15 @@
         function isAdmin() {
             $http.get("api/Authorization/getAdminRights").success(function (data) {
                 $scope.isAdmin = data;
-                console.log($scope.isAdmin);
+                $http.get("api/AppSettings/getCorporateDashboard").success(function (data2) {
+                    if ($scope.isAdmin && data2) {
+                        TeamSatisfactionData();
+                        CustomerSatisfactionData();
+                    } else {
+                        window.location.replace("#/home");
+                    }
+                }).error(function () {
+                })
                 
             })
             .error(function () {

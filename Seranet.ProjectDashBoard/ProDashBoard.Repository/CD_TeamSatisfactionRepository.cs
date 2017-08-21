@@ -25,7 +25,7 @@ namespace ProDashBoard.Data
 
         public List<CD_SatisfactionData> Get()
         {
-            List<CD_SatisfactionData> resultsArray = this._db.Query("select top 7 Year,Quarter,Rating,Completion FROM CD_TeamSatisfaction order by Year desc, Quarter desc").Select(d => new CD_SatisfactionData { Year = d.Year, Quarter = d.Quarter, Rating = d.Rating, Completion = d.Completion}).ToList();
+            List<CD_SatisfactionData> resultsArray = this._db.Query("select top 7 Year,Quarter,Rating,Completion,burningIssues FROM CD_TeamSatisfaction order by Year desc, Quarter desc").Select(d => new CD_SatisfactionData { Year = d.Year, Quarter = d.Quarter, Rating = d.Rating, Completion = d.Completion, BurningIssues=d.burningIssues}).ToList();
 
             return resultsArray;
         }
@@ -38,7 +38,7 @@ namespace ProDashBoard.Data
 
         public List<CD_ProjectSatisfactionData> GetProjects(int year,int quarter)
         {
-            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.AccountName, sumr.Rating FROM Summary sumr join Account pj on sumr.ProjectID = pj.Id where sumr.Year ="+year+" and sumr.Quarter ="+quarter + " and sumr.Rating !=0 order by sumr.Rating desc; ").Select(d => new CD_ProjectSatisfactionData { Name =d.AccountName, Rating = d.Rating }).ToList();
+            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.AccountName, sumr.Rating FROM Summary sumr join Account pj on sumr.ProjectID = pj.Id where sumr.Year ="+year+" and sumr.Quarter ="+quarter + " and sumr.Rating !=0 order by ABS(sumr.Rating) desc; ").Select(d => new CD_ProjectSatisfactionData { Name =d.AccountName, Rating = d.Rating }).ToList();
 
             return resultsArray;
         }

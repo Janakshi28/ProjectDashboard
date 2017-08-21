@@ -108,13 +108,26 @@
                                     </tr>
                                     <tr data-ng-repeat="project in selectedSummary" style="border-bottom: 1px solid #ccc;">
                                         <td style="padding-left:15px;width:30%">{{project.Year}}</td>
-                                        <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
+                                        <td style="padding-left:10px;width:20%">Q{{project.Quarter}}</td>
                                         <td style="padding-left:15px">{{project.Rating}}</td>
                                         <td style="padding-left:20px">
                                             <img ng-show="project.Trend" src="/Content/Images/up.png">
                                             <img ng-show="!project.Trend && !project.isEqual" src="/Content/Images/down.png">
-                                            <img ng-show="project.isEqual" src="/Content/Images/equal.png">
+                                            <img ng-show="project.isEqual" style="" src="/Content/Images/equal.png">
                                         </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid #ccc;">
+                                        <td style="padding-left:15px;width:30%">{{finalobject.Year}}</td>
+                                        <td style="padding-left:10px;width:20%">Q{{finalobject.Quarter}}</td>
+                                        <td style="padding-left:15px">{{finalobject.Rating}}</td>
+                                        <td style="padding-left:20px">
+                                            <div data-ng-show="TeamShowMore">
+                                            <img ng-show="finalobject.Trend" src="/Content/Images/up.png">
+                                            <img ng-show="!finalobject.Trend && !finalobject.isEqual" src="/Content/Images/down.png">
+                                            <img ng-show="finalobject.isEqual" style="" src="/Content/Images/equal.png">
+                                             </div>
+                                        </td>
+                                        </tr>
                                     <tr>
                                         <td data-ng-show="TeamShowMore" style="padding-left:15px;font-size:12px;cursor: pointer;"><a>More</a></td>
                                     </tr>
@@ -156,8 +169,9 @@
                             </div>
                         </div>
 
-                        <a style="padding-left:30px;cursor:pointer;padding-top:5px">{{TeamSatisfactionCount}} user(s) completed for {{chartTime}} </a>
-
+                        <a style="padding-left:30px;cursor:pointer;padding-top:5px">{{TeamCompletion}} user(s) completed for {{chartTime}} </a>
+                        <br />
+                        <a style="padding-left:30px;cursor:pointer;padding-top:5px">{{BurningIssues}} Burnning Issue(s)</a>
                     </div>
                 </div>
             </div>
@@ -243,12 +257,24 @@
                                     </tr>
                                     <tr data-ng-repeat="project in selectedCustomerSummary" style="border-bottom: 1px solid #ccc;">
                                         <td style="padding-left:15px;width:30%">{{project.Year}}</td>
-                                        <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
+                                        <td style="padding-left:10px;width:20%">H{{project.Quarter}}</td>
                                         <td style="padding-left:15px">{{project.Rating}}</td>
                                         <td style="padding-left:0px">
                                             <img ng-show="project.Trend" src="/Content/Images/up.png">
                                             <img ng-show="!project.Trend && !project.isEqual" src="/Content/Images/down.png">
                                             <img ng-show="project.isEqual" src="/Content/Images/equal.png" style="height:18px;">
+                                        </td>
+                                    </tr>
+                                    <tr  style="border-bottom: 1px solid #ccc;">
+                                        <td style="padding-left:15px;width:30%">{{Customerfinalobject.Year}}</td>
+                                        <td style="padding-left:10px;width:20%">H{{Customerfinalobject.Quarter}}</td>
+                                        <td style="padding-left:15px">{{Customerfinalobject.Rating}}</td>
+                                        <td style="padding-left:0px">
+                                            <div data-ng-show="CustomerShowMore">
+                                                <img ng-show="Customerfinalobject.Trend" src="/Content/Images/up.png">
+                                                <img ng-show="!Customerfinalobject.Trend && !Customerfinalobject.isEqual" src="/Content/Images/down.png">
+                                                <img ng-show="Customerfinalobject.isEqual" src="/Content/Images/equal.png" style="height:18px;">
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -290,7 +316,7 @@
                                 </table>
                             </div>
                         </div>
-                        <a style="padding-left:20px;cursor:pointer;margin-top:15px">{{NumberofProjects}} Project(s) completed for {{CustomerchartTime}} </a>
+                        <a style="padding-left:20px;cursor:pointer;margin-top:15px">{{CustomerCompletion}} Project(s) completed for {{CustomerchartTime}} </a>
                     </div>
                 </div>
             </div>
@@ -334,7 +360,7 @@
                                 </div>
                                 <div>
 
-                                    <div class="row" style="font-size:55px;font-weight:800;padding-left:20px;padding-top:10px">
+                                    <div class="row" style="font-size:55px;font-weight:800;padding-left:20px;padding-top:10px;color:{{color}}">
                                         {{MainObject.Rating}}
                                         <img ng-show="!MainObject.Trend" src="/Content/Images/up.png" style="height:18px; z-index: -1;">
                                         <img ng-show="MainObject.Trend && !MainObject.isEqual" src="/Content/Images/down.png" style="height:18px; z-index: -1;">
@@ -367,12 +393,24 @@
                                             </tr>
                                             <tr data-ng-repeat="project in ProcessComplienceData" style="border-bottom: 1px solid #ccc;">
                                                 <td style="padding-left:15px;width:30%">{{project.Year}}</td>
-                                                <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
+                                                <td style="padding-left:10px;width:20%">H{{project.Quarter}}</td>
                                                 <td style="padding-left:15px">{{project.Rating}}</td>
                                                 <td style="padding-left:0px">
                                                     <img ng-show="!project.Trend" src="/Content/Images/up.png">
                                                     <img ng-show="project.Trend && !project.isEqual" src="/Content/Images/down.png">
                                                     <img ng-show="project.isEqual" src="/Content/Images/equal.png" style="height:18px;">
+                                                </td>
+                                            </tr>
+                                            <tr style="border-bottom: 1px solid #ccc;">
+                                                <td style="padding-left:15px;width:30%">{{finalobject.Year}}</td>
+                                                <td style="padding-left:10px;width:20%">Q{{finalobject.Quarter}}</td>
+                                                <td style="padding-left:15px">{{finalobject.Rating}}</td>
+                                                <td style="padding-left:20px">
+                                                    <div data-ng-show="ShowMore">
+                                                        <img ng-show="finalobject.Trend" src="/Content/Images/up.png">
+                                                        <img ng-show="!finalobject.Trend && !finalobject.isEqual" src="/Content/Images/down.png">
+                                                        <img ng-show="finalobject.isEqual" style="" src="/Content/Images/equal.png">
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -412,7 +450,7 @@
                                     </div>
 
                                 </div>
-                                <a style="cursor:pointer;margin-top:15px">{{NumberofProjects}} Project(s) completed for {{ShowingHalf}} </a>
+                                <a style="cursor:pointer;margin-top:15px">{{Completion}} Project(s) completed for {{ShowingHalf}} </a>
                             </div>
                         </div>
                     </div>
@@ -495,7 +533,7 @@
                                 <br />
                                 
                             </div>
-                            <div class="row" >
+                            <div class="row">
                                 <div class="col-md-2">
                                     <hr style="border-color:coral;height:2px;margin-left:0px;margin-top:0px;margin-right:0px;margin-bottom:10px" />
                                 </div>
@@ -527,12 +565,24 @@
                                         </tr>
                                         <tr data-ng-repeat="project in NPSData" style="border-bottom: 1px solid #ccc;">
                                             <td style="padding-left:15px;width:30%">{{project.Year}}</td>
-                                            <td style="padding-left:10px;width:20%">{{project.Quarter}}</td>
+                                            <td style="padding-left:10px;width:20%">H{{project.Quarter}}</td>
                                             <td style="padding-left:15px">{{project.Rating}}</td>
                                             <td style="padding-left:0px">
                                                 <img ng-show="!project.Trend" src="/Content/Images/up.png">
                                                 <img ng-show="project.Trend && !project.isEqual" src="/Content/Images/down.png">
                                                 <img ng-show="project.isEqual" src="/Content/Images/equal.png" style="height:18px;">
+                                            </td>
+                                        </tr>
+                                        <tr style="border-bottom: 1px solid #ccc;">
+                                            <td style="padding-left:15px;width:30%">{{finalobject.Year}}</td>
+                                            <td style="padding-left:10px;width:20%">Q{{finalobject.Quarter}}</td>
+                                            <td style="padding-left:15px">{{finalobject.Rating}}</td>
+                                            <td style="padding-left:20px">
+                                                <div data-ng-show="ShowMore">
+                                                    <img ng-show="finalobject.Trend" src="/Content/Images/up.png">
+                                                    <img ng-show="!finalobject.Trend && !finalobject.isEqual" src="/Content/Images/down.png">
+                                                    <img ng-show="finalobject.isEqual" style="" src="/Content/Images/equal.png">
+                                                </div>
                                             </td>
                                         </tr>
                                         <tr>
@@ -573,7 +623,7 @@
 
                             </div>
                             <div style="padding-left:30px">
-                                <a style="cursor:pointer;margin-top:15px;">{{NumberofProjects}} Project(s) completed for {{ShowingHalf}} </a>
+                                <a style="cursor:pointer;margin-top:15px;">{{Completion}} Project(s) completed for {{ShowingHalf}} </a>
                             </div>
                             </div>
                         </div>

@@ -36,7 +36,7 @@
                     //Rating values
                     var MainObject = $scope.NPSData.shift();
                     var Rating = MainObject.Rating;
-                    var NPS = parseFloat(Rating)*10;
+                    var NPS = parseFloat(Rating);
                     $scope.value = NPS.toString();
                     console.log($scope.value);
 
@@ -50,12 +50,15 @@
                     // var CustomerTScore = 5 - CustomerTeamSatisficationScore;
                     $scope.MainObject = MainObject;
                     $scope.ShowingYear = MainObject.Year;
-                    $scope.ShowingQuarter = parseInt(MainObject.Quarter[1]);
-                    $scope.ShowingHalf = MainObject.Year + "-" + MainObject.Quarter;
+                    $scope.ShowingQuarter = parseInt(MainObject.Quarter);
+                    $scope.ShowingHalf = MainObject.Year + "-H" + MainObject.Quarter;
+                    $scope.Completion = MainObject.Completion;
+                    //console.log(MainObject.Completion);
                     if ($scope.NPSData.length > 4) {
                         $scope.NPSData.pop();
                         $scope.ShowMore = true;
                     }
+                    $scope.finalobject = $scope.NPSData.pop();
                     NPSProjects();
                 }
 

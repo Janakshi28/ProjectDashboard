@@ -11,7 +11,7 @@
         
         $scope.Trends = true;
         $scope.Projects = false;
-
+       
         ComplienceData();
         function ComplienceData() {
             $http.get('api/CD_ProcessComplienceController/get').success(function (data) {
@@ -19,9 +19,11 @@
                 for (var i = 0; i < (data.length - 1) ; i++) {
                     if (parseFloat(data[i].Rating) > parseFloat(data[i + 1].Rating)) {
                         data[i].Trend = true;
+                        
                     } else if (parseFloat(data[i].Rating) == parseFloat(data[i + 1].Rating)) {
                         data[i].isEqual = true;
                     }
+
                 }
 
                 $scope.ProcessComplienceData = data;
@@ -33,12 +35,24 @@
                 // var CustomerTScore = 5 - CustomerTeamSatisficationScore;
                 $scope.MainObject = MainObject;
                 $scope.ShowingYear = MainObject.Year;
-                $scope.ShowingQuarter = parseInt(MainObject.Quarter[1]);
-                $scope.ShowingHalf = MainObject.Year + "-" + MainObject.Quarter;
+                $scope.ShowingQuarter = parseInt(MainObject.Quarter);
+                $scope.ShowingHalf = MainObject.Year + "-H" + MainObject.Quarter;
+                $scope.Completion = MainObject.Completion;
+                var value = parseFloat(MainObject.Rating);
+
+                if(value<0.4){
+                    $scope.color = "#e22626";
+                }
+                else if(value>=0.4 && value<0.8){
+                    $scope.color = "#FD9C34";
+                } else {
+                    $scope.color = "#4edab3";
+                }
                 if ($scope.ProcessComplienceData.length > 4) {
                     $scope.ProcessComplienceData.pop();
                     $scope.ShowMore = true;
                 }
+                $scope.finalobject = $scope.ProcessComplienceData.pop();
                 ProcessComplienceProjects();
             }).error(function () {
                 $scope.error = "An Error has occured while loading posts!";

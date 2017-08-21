@@ -13,5 +13,7 @@ namespace ProDashBoard.Model
         public string Completion { get; set; }
         public bool Trend { get; set; }
         public bool isEqual { get; set; }
+
+        public int BurningIssues { get; set; }
     }
 }

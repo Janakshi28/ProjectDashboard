@@ -32,7 +32,7 @@ namespace ProDashBoard.Data
         public List<CD_ProjectSatisfactionData> GetProjects(int Year, int Quarter)
         {
             int QuestionNO = appRepo.getNPSQuestionNo();
-            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.Name, sumr.Answer FROM CustomerSatisfactionResults sumr join Project pj on sumr.ProjectId = pj.Id where sumr.Year =" + Year + " and sumr.Quarter =" + Quarter + " and sumr.QuestionOrder="+QuestionNO +"order by sumr.Answer desc; ").Select(d => new CD_ProjectSatisfactionData { Name = d.Name, Answer = d.Answer }).ToList();
+            List<CD_ProjectSatisfactionData> resultsArray = this._db.Query("SELECT  pj.Name, sumr.Answer FROM CustomerSatisfactionResults sumr join Project pj on sumr.ProjectId = pj.Id where sumr.Year =" + Year + " and sumr.Quarter =" + Quarter + " and sumr.QuestionOrder="+QuestionNO + "order by ABS(sumr.Answer) desc; ").Select(d => new CD_ProjectSatisfactionData { Name = d.Name, Answer = d.Answer }).ToList();
 
             return resultsArray;
         }

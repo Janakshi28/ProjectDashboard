@@ -51,5 +51,16 @@ namespace ProDashBoard.Api
             return 0;
         }
         //api/Account/getInacativeAccounts
+
+        [HttpPost, Route("api/TeamMembers/DeactivateEmployees")]
+        public int DeactivateEmployees([FromBody] List<string> userName)
+        {
+            List<string> allEmployees = Get().Select(x => x.MemberName).ToList();
+            List<string> usersToDeactivate = allEmployees.Except(userName).ToList();
+
+            repo.DeactivateEmployees(usersToDeactivate);
+
+            return 0;
+        }
     }
 }

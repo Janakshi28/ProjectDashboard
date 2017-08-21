@@ -41,10 +41,10 @@ namespace ProDashBoard.Data
         }
 
         public int updateSelectedSummary(int accountId,int year,int quarter,double rating) {
-            int rowsAffected = this._db.Execute("UPDATE [Summary] SET [Rating] = '"+rating+"' WHERE ProjectID ='"+accountId+"' and Year='"+year+"' and Quarter='"+quarter+"' ");
+            int rowsAffected = this._db.Execute("UPDATE [Summary] SET [Rating] = '"+rating+ "', [updatedDatetime]='"+ DateTime.Now + "' WHERE ProjectID ='" + accountId+"' and Year='"+year+"' and Quarter='"+quarter+"' ");
             if (rowsAffected == 0) {
-                rowsAffected=this._db.Execute(@"INSERT Summary([ProjectID],[Year],[Quarter],[Rating]) values (@AccountId,@Year,@Quarter,@Rating)",
-                new { AccountId = accountId, Year = year, Quarter = quarter, Rating = rating });
+                rowsAffected=this._db.Execute(@"INSERT Summary([ProjectID],[Year],[Quarter],[Rating],[updatedDatetime]) values (@AccountId,@Year,@Quarter,@Rating,@Updated)",
+                new { AccountId = accountId, Year = year, Quarter = quarter, Rating = rating, Updated= DateTime.Now });
             }
 
             return rowsAffected;

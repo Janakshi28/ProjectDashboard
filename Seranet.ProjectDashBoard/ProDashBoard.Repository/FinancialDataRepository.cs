@@ -153,6 +153,14 @@ namespace ProDashBoard.Repository
                 return null;
             }
         }
+
+        public List<ProjectCodesData> getProjects()
+        {
+            //List<ProjectCodesData> resultsArray = this._db.Query("select jp.Project_name as Name, jp.project_key as Project_key,pc.main_category as Catagory from [JiraProjects] jp join[JiraProjectCategories] pc on jp.category_id = pc.category_id order by jp.Project_name asc").Select(d => new ProjectCodesData { Name = d.Name,Code= d.Project_key, Catagory=d.Catagory }).ToList();
+            List<ProjectCodesData> resultsArray = this._db.Query("select proj.project_key as Project_key, proj.project_name as Name, proj.account_id as Account_id, acc.account as Account, proj.category_id as Catagory_id, cat.category_name as Catagory FROM JiraProjects proj join JiraAccounts acc on proj.account_id = acc.account_id join JiraProjectCategories cat on proj.category_id = cat.category_id order by proj.project_name asc").Select(d => new ProjectCodesData { Name = d.Name, Code = d.Project_key, Catagory = d.Catagory, CatagoryID=d.Catagory_id, Account=d.Account,AccountID=d.Account_id }).ToList();
+
+            return resultsArray;
+        }
     }
 }
 

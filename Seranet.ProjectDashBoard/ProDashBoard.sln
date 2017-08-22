@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDashBoard.Model", "ProDashBoard.Model\ProDashBoard.Model.csproj", "{DEEDE344-9FE5-42AD-80F0-300FBDE91746}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDashBoard.Data", "ProDashBoard.Repository\ProDashBoard.Data.csproj", "{0985ECBA-B560-4B39-AD27-9F7D0FFAF3BD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{DEEDE344-9FE5-42AD-80F0-300FBDE91746} = {DEEDE344-9FE5-42AD-80F0-300FBDE91746}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProDashBoard.Api", "ProDashBoard.Api\ProDashBoard.Api.csproj", "{17C29E43-ED9F-464E-A44B-DB37842927C0}"
 	ProjectSection(ProjectDependencies) = postProject

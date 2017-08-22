@@ -1,0 +1,77 @@
+﻿<div style="font-family:Roboto;padding:5px;" aria-hidden="false" class="modal-content1 modal-open">
+    <div class="modal-body modal-header">
+        <button type="button" class="close" data-ng-click="close()" aria-hidden="true">×</button>
+        <h3 class="modal-title">Select Billable Projects</h3>
+    </div>
+
+    <div class="modal-body">
+        <div class="row" style="display:inline">
+            <div class="col-md-2" style="padding-left:20px"><h5><b>Account</b></h5></div>
+            <div class="col-md-3">
+                <select  
+                        class="myList"
+                        data-ng-model="SelectedProject" 
+                        data-ng-change="change(SelectedProject,SelectedType)" 
+                        data-ng-options="project for project in uniqueProjects"
+                        ng-init="SelectedProject=SelctProj"
+                        >
+                </select>
+            </div>
+            <div class="col-md-2">
+                <input type="text" data-ng-model="searchKeyword" placeholder="Search" class="form-control" style="width:100%;margin:0;text-align:center;">
+            </div>
+            <div class="col-md-2" style="padding-left:20px"><h5><b>Category</b></h5></div>
+            <div class="col-md-3" style="float:left">
+                <select 
+                        class="myList" 
+                        data-ng-model="SelectedType"
+                        data-ng-change="change2(SelectedProject,SelectedType)"
+                        data-ng-options="type for type in uniqueTypes"
+                        ng-init="SelectedType=SelctProj"
+                        
+                        >
+                   
+                </select>
+            </div>
+          
+        </div>
+        <br />
+        <div class="row" style="padding-left:50px">
+            
+            <div style="overflow:scroll; height:500px; overflow-x: hidden">
+                <table id="projects" style="width:100%;">
+                    <tr style="border-bottom: 1px solid #ccc;">
+                        <th >Project Code</th>
+                        <th>Project Name</th>
+                        <th>Category</th>
+                        <th>Select</th>
+                    </tr>
+                    <tr data-ng-repeat="project in ProjectswithCodes | filter: {Name : searchKeyword}">
+                        <td style="padding-left:15px">{{project.Code}}</td>
+                        <td style="padding-left:10px">{{project.Name}}</td>
+                        <td style="padding-left:15px">{{project.Catagory}}</td>
+                        <td style="padding-left:20px">
+                           <input type="checkbox" style="width:16px;height:25px;" ng-model="project.Selected" >
+                        </td>
+                    </tr>
+                </table>
+                    <!--<div data-ng-repeat="project in ProjectswithCodes ">
+                        <div class="row" style="display:inline">
+                            <div class="col-md-8">
+                                <p>{{project.Name}}    &nbsp;     {{project.Code}}        &nbsp;&nbsp;      {{project.Catagory}}</p>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="checkbox" style="width:16px;height:25px;" ng-model="project.Selected">
+                            </div>
+                        </div>
+                    </div>-->
+</div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-warning" ng-click="checkSelectedProjects()">
+            Get Selected Projects
+        </button>
+        <!--<button class="btn btn-warning" type="button" data-ng-click="close()">Close</button>-->
+    </div>
+</div>

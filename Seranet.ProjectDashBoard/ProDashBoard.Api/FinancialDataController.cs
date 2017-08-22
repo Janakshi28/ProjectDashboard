@@ -33,5 +33,16 @@ namespace ProDashBoard.Api
         }
 
 
+        //Getting All the projects
+        [HttpGet, Route("api/FinancialData/getProjects")]
+        public HttpResponseMessage getProjects()
+        {
+           List<ProjectCodesData> returnData = repo.getProjects();
+              return Request.CreateResponse(HttpStatusCode.OK, returnData);
+            
+        }
+
+
+
     }
 }

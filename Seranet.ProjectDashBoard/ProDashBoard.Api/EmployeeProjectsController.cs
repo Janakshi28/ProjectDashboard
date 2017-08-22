@@ -57,6 +57,12 @@ namespace ProDashBoard.Api
             return returnData;
         }
 
+        [HttpGet, Route("api/EmployeeProjects/getAllEmployessForSelectedAccount/{accountId}")]
+        public List<EmployeeProjectsData> getAllEmployessForSelectedAccount(int accountId)
+        {
+            return repo.getAllEmployeesOfSelectedAccount(accountId);
+        }
+
         [HttpGet, Route("api/EmployeeProjects/getEmployeeAccountProjects/{accountId}/{empId}")]
         public List<Object[]> getEmployeeAccountProjects(int accountId,int empId)
         {

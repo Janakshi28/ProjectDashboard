@@ -64,6 +64,11 @@ namespace ProDashBoard.Data
             return this._db.Query<EmployeeProjectsData>("SELECT distinct ea.Id,ea.EmpId,ea.AccountId,tm.MemberName as EmpName,ea.ProjectId,ea.Availability,ea.BillableHours,ea.Lead,ea.Billable FROM EmployeeProjects ea,TeamMembers tm WHERE ea.EmpId=tm.Id and ea.Availability=1 and ea.AccountId='" + accountId + "'").ToList();
         }
 
+        public List<EmployeeProjectsData> getAllEmployeesOfSelectedAccount(int accountId)
+        {
+            return this._db.Query<EmployeeProjectsData>("SELECT distinct ea.Id,ea.EmpId,ea.AccountId,tm.MemberName as EmpName,ea.ProjectId,ea.Availability,ea.BillableHours,ea.Lead,ea.Billable FROM EmployeeProjects ea,TeamMembers tm WHERE ea.EmpId=tm.Id and ea.AccountId='" + accountId + "'").ToList();
+        }
+
         public int add(EmployeeProjects employeeProject)
         {
 

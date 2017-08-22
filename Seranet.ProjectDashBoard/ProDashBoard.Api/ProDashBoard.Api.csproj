@@ -127,6 +127,7 @@
     <Compile Include="CommodDataController.cs" />
     <Compile Include="CustomerSatisfactionResultsController.cs" />
     <Compile Include="CustomerSatisfactionSummaryController.cs" />
+    <Compile Include="EmailSenderController.cs" />
     <Compile Include="EmployeeProjectsController.cs" />
     <Compile Include="FinancialDataController.cs" />
     <Compile Include="FinancialResultsController.cs" />

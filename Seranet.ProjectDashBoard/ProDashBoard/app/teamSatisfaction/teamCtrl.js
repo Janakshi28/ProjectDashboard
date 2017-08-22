@@ -22,14 +22,6 @@
         //$scope.key1 = 3;
         //Redirect to team satisfcation review popup
         $scope.open = function (employee, ev) {
-            //    $mdDialog.show(
-            //$mdDialog.confirm()     
-            //.title('Alert Box Title')
-            //.textContent('Your Description text goes here.....')
-            //.ariaLabel('Alert Dialog label')
-            //.ok('Ok Got it!')
-            //.targetEvent(ev)
-            //);
 
             var modalInstance = $modal.open({
                 templateUrl: 'app/teamSatisfaction/PopupPage.html',
@@ -51,6 +43,9 @@
             });
 
         }
+
+
+
         $scope.employee;
         //check authorization
         function isAuthorized() {

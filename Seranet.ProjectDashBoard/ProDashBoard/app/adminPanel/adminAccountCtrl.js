@@ -2,15 +2,17 @@
     'use strict';
     //create angularjs controller
 
-    app.controller('adminAccountController', ['$scope', 'toaster', '$mdDialog', '$http', '$window', adminAccountController]);
+    app.controller('adminAccountController', ['$scope','$rootScope', 'toaster', '$mdDialog', '$http', '$window', '$modal', adminAccountController]);
 
     //angularjs controller method
-    function adminAccountController($scope, toaster, $mdDialog, $http, $window) {
-
+    function adminAccountController($scope,$rootScope, toaster, $mdDialog, $http, $window, $modal) {
         loadactiveAccounts();
         // loadInactiveAccounts();
         loadActiveEmployees();
 
+       // $scope.allProjectCodes = "BBBBB";
+
+        loadProjectsToPopup();
 
         $scope.toCreateNewAccount = false;
         $scope.createNewAccount = false;
@@ -23,6 +25,66 @@
         $scope.searchKeyword = "";
         isAdminOrTeamLead();
         $scope.projectCheck = [];
+
+        //Popup
+
+        function loadProjectsToPopup() {
+            $http.get('api/FinancialData/getProjects').success(function (data) {
+                console.log("DATA COMINGGGGG");
+                //console.log(data);
+                $scope.UniqueProjects = [];
+                $scope.UniqueProjects.push("All");
+                data.forEach(function (project) {
+                    if ($scope.UniqueProjects.includes(project.Account)) {
+
+                    } else {
+                        $scope.UniqueProjects.push(project.Account)
+                    }
+                });
+                $scope.ProjectCodes = data;
+
+                $scope.UniqueTypes = [];
+                $scope.UniqueTypes.push("All");
+                data.forEach(function (project) {
+                    if ($scope.UniqueTypes.includes(project.Catagory)) {
+
+                    } else {
+                        $scope.UniqueTypes.push(project.Catagory)
+                    }
+                });
+            })
+            .error(function () {
+                console.log("DATA NOT COMINGGGGG");
+            });
+        }
+
+        $scope.open = function () {
+            var modalInstance = $modal.open({
+                templateUrl: 'app/adminPanel/AccountPopUp.html',
+                controller: 'AccountPopUpController',
+                resolve: {
+                    Year: function () {
+                        return 2017;
+                    },
+                    ActiveAccounts: function () {
+                        return $scope.ProjectCodes;
+                    },
+                    UniqueProjects: function(){
+                        return $scope.UniqueProjects;
+                    },
+                    UniqueTypes: function () {
+                        return $scope.UniqueTypes;
+                    }
+                }
+            });
+
+        }
+          
+        $scope.openme = function () {
+            console.log('opening pop up +++++++++++++++++++');
+        }
+
+
         function loadInactiveAccounts() {
             $http.get('api/Account/adminPanelInactiveAccounts').success(function (data) {
                 $scope.tempInactiveAccounts = data;
@@ -47,6 +109,7 @@
 
         function loadactiveAccounts() {
             $http.get('api/Account/adminPanelActiveAccounts').success(function (data) {
+                console.log(data);
                 $scope.activeAccounts = data;
                 //$scope.$apply();
                 if ($scope.activeAccounts.length != 0) {
@@ -103,7 +166,7 @@
             $scope.accountOwner = account.AccountOwner;
             $scope.selectedEmpId = account.AccountOwner;
             $scope.isAccountInactive = !account.Availability;
-            $scope.allProjectCodes = account.AllProjectCodes;
+            $rootScope.allProjectCodes = account.AllProjectCodes;
 
         }
 
@@ -156,7 +219,7 @@
             }
             $scope.accountDescription = "";
             $scope.accountCode = "";
-            $scope.allProjectCodes = "";
+            $rootScope.allProjectCodes = "";
             $scope.projects = [];
             $scope.newProjects = [];
             $scope.clickedButton = 0;
@@ -173,7 +236,8 @@
                 toaster.pop('success', "Notificaton", "New Account Created Successfully");
                 //alert('New Account Created Successfully ');
 
-            }).error(function () {
+            }).error(function (error) {
+            toaster.pop('warning', "Notificaton", "New Account Created Successfully");
                 $scope.error = "An Error has occured while loading posts!";
             });
         }
@@ -198,7 +262,7 @@
 
         function EditData() {
             var checkboxes = $("#selectedAccountCheck");
-            var newAccount = { 'Id': $scope.selectedAccount, 'AccountName': $scope.accountName, 'AccCode': $scope.accountCode, 'Availability': !$scope.isAccountInactive, 'AccountOwner': $scope.accountOwner, 'Description': $scope.accountDescription, 'AllProjectCodes': $scope.allProjectCodes };
+            var newAccount = { 'Id': $scope.selectedAccount, 'AccountName': $scope.accountName, 'AccCode': $scope.accountCode, 'Availability': !$scope.isAccountInactive, 'AccountOwner': $scope.accountOwner, 'Description': $scope.accountDescription, 'AllProjectCodes': $rootScope.allProjectCodes };
           
             //Update Account Details
             $http.put('api/Account/update', newAccount).success(function (data) {
@@ -240,7 +304,7 @@
 
             if ($scope.createNewAccount) {
                 //create a new account
-                var newAccount = { 'Id': 0, 'AccountName': $scope.accountName, 'AccCode': $scope.accountCode, 'Availability': !checkboxes.is(":checked"), 'AccountOwner': $scope.accountOwner, 'Description': $scope.accountDescription, 'AllProjectCodes': $scope.allProjectCodes };
+                var newAccount = { 'Id': 0, 'AccountName': $scope.accountName, 'AccCode': $scope.accountCode, 'Availability': !checkboxes.is(":checked"), 'AccountOwner': $scope.accountOwner, 'Description': $scope.accountDescription, 'AllProjectCodes': $rootScope.allProjectCodes };
                 addNewAccount(newAccount);
 
             } else {
@@ -256,5 +320,7 @@
 
             }
         }
+
+    
     }
 })();

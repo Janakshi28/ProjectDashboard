@@ -16,10 +16,8 @@ namespace ProDashBoard.Repository
     public class FinancialSummaryRepository : IFinancialSummaryRepository
     {
         private readonly IDbConnection _db;
-        //private EmailSenderRepository emailSenderRepo;
         public FinancialSummaryRepository() {
             _db = new SqlConnection(ConfigurationManager.ConnectionStrings["DashBoard1"].ConnectionString);
-            //emailSenderRepo = new EmailSenderRepository();
         }
         public void add(FinancialSummary summary)
         {

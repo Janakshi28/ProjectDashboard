@@ -1,0 +1,96 @@
+﻿<div data-ng-controller="teamSatisfactionSurveyEmailController" class="modal-body" style="padding-top:0;">
+    <!--<a ui-sref=".account"></a>-->
+    <toaster-container toaster-options="{'time-out': 3000,'position-class': 'toast-top-right'}"></toaster-container>
+
+    <div class="row">
+        <br>
+        <div class="row">
+            <div class="col-md-4">
+                <h4><b>Team Satisfaction Survey</b></h4>
+            </div>
+        </div>
+        <br>
+        <form name="surveyEmailForm" novalidate>
+        <div class="row">
+            <div class="col-md-1">
+              <span>Account</span>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control adminProjectField" data-ng-model="selectedAccount" data-ng-change="accountComboChange()" required>
+                    <option data-ng-repeat="account in activeAccounts" value={{account}}>{{account.AccountName}}</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-1">
+               <span>Year</span>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control adminProjectField" data-ng-model="selectedYear" required>
+                    <option data-ng-repeat="year in yearArray" value={{year}}>{{year}}</option>
+                </select>
+            </div>
+
+            <div class="col-md-1">
+                <span>Quarter</span>
+            </div>
+            <div class="col-md-3">
+                <select class="form-control adminProjectField" data-ng-model="selectedQuarter" required>
+                    <option value="1">Quarter 1</option>
+                    <option value="2">Quarter 2</option>
+                    <option value="3">Quarter 3</option>
+                    <option value="4">Quarter 4</option>
+                </select>
+            </div>
+        </div>
+        <br>
+            <div class="row">
+                <div class="col-md-1">
+                    <span>Dead Line</span>
+                </div>
+                <div class="col-md-3">
+                    <md-datepicker data-ng-model="deadLine" md-placeholder="Enter date" style="width:100%;" required></md-datepicker>
+                </div>
+            </div>
+            <br>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-3">
+                <h5>Team Members</h5>
+            </div>
+            </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="adminProjectCover surveyTableCover">
+                <table id="adminProjectTeamTable" style="width:100%;">
+                    <tr style="border-bottom:1px solid #ccc;">
+                        <th>Name</th>
+                        <th>Inactive</th>
+                        <th>Selected to Send Servey</th>
+                    </tr>
+                    <tbody>
+                        <tr data-ng-repeat="employee in allEmployees">
+                            <td>{{employee.EmpName}}</td>
+                            <td><input type="checkbox" class="adminCheckBox" data-ng-checked="employee.Availability==false" data-ng-disabled="true"></td>
+                            <td><input type="checkbox" class="adminCheckBox" data-ng-init="selectedEmpoyeesForSurvey[employee.EmpId]=employee.Availability" data-ng-model="selectedEmpoyeesForSurvey[employee.EmpId]"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+            <br>
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-2">
+                    <button class="btn btn-secondary adminProjectField mainBut" data-ng-disabled="surveyEmailForm.$invalid || allEmployees.length==0" style="width:100px;" data-ng-click="sendSurveyEmail($event)">Send Email</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+

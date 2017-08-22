@@ -97,7 +97,7 @@
                             <th style="padding-left:20px">NonBillable</th>
 
                         </tr>
-                        <tr data-ng-repeat="tblData in tableData">
+                        <tr data-ng-if="tableData.length!=0 && tableData[0].length!=0" data-ng-repeat="tblData in tableData">
                             
                             <td style="padding-left:20px;">{{tblData[0].EmpName}}</td>
                             

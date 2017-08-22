@@ -119,17 +119,6 @@
             loadStart();
         }
 
-        //$http.get("http://99xt.lk/services/api/Employees", { withCredentials: true }).success(function (data) {
-        //    alert("Login ");
-        //    getData();
-        //    console.log(data[0].id);
-        //}).
-        //        error(function (data, status, headers, config) {
-        //            console.log(data);
-        //        });
-
-
-        
         isAuthorized();
         
         // Initialize widgets
@@ -152,7 +141,10 @@
                 return angular.isUndefined(val) || val === null
             }
 
+            loadSpecWidgetData();
+
             //Load Spec widget data
+            function loadSpecWidgetData(){
             $http.get('api/Spec/getSpecLevel/' + $scope.myVal).success(function (data) {
                 $scope.specLevelData = data;
               
@@ -194,7 +186,7 @@
             $scope.error = "An Error has occured while loading posts!";
 
         });
-
+        }
             //Declare widgets click actions (assign valid urls to redirect to inside pages)
             $scope.teamClick = function () {
 
@@ -406,11 +398,15 @@
                         } else {
                             tempReturnArray[0] = 'teamlev2';
                         }
+                        //if ($scope.riskShow != false) {
                         $scope.riskDataVales.push(tempReturnArray);
                         $scope.riskShow = true;
+                          
+                        //}
                     })
                 } else {
-                    $scope.riskDataVales = [];
+                  $scope.riskDataVales = [];
+                  $scope.riskData = null;
                     $scope.riskShow = false;
                     //$scope.riskDataVales.push(null);
                 }
@@ -420,7 +416,8 @@
                 
             })
             .error(function () {
-
+              $scope.riskDataVales = [];
+              $scope.riskData = null;
             });
         }
 
@@ -446,7 +443,7 @@
                         $scope.images1.push(tempReturnArray);
 
                     })
-                    $scope.divVal = 100 / $scope.images1.length;
+                    $scope.divVal = 100 / $scope.processComplianceDataVal.length;
                     if ($scope.images1.length != 1) {
                         $scope.mainDevWidth = (387 * $scope.images1.length) + "px";
                     } else {
@@ -572,7 +569,7 @@
         }
         function isAdminOrTeamLead() {
             //api/Authorization/getAdminOrTeamLeadRights/{accountId}
-            $http.get("api/Authorization/getAdminOrTeamLeadRights/" + $scope.myVal).success(function (data) {
+            $http.get("api/Authorization/getAdminOrTeamLeadRights/1").success(function (data) {
                 
                 $scope.isAdmin = data.split('-')[0].toLowerCase() == 'true';
                 $scope.isTeamLead = data.split('-')[1].toLowerCase() == 'true';
@@ -603,14 +600,15 @@
         function loadUserAccounts() {
             $http.get('api/EmployeeProjects/getEmployeeAccounts/' + $scope.loggedInUserId).success(function (data) {
                 $scope.userAccounts = data;
+                $scope.projects = data;
                 if (data.length == 0) {
                     $scope.specShow = false;
                     $scope.teamShow = false;
                     $scope.customerSatShow = false;
                     $scope.processComplianceShow = false;
                     $scope.financialSatShow = false;
-                }
-                $scope.projects = data;
+                
+                }else{
                 console.log(data + "      dataaaa")
                 $scope.key1 =JSON.parse($scope.userAccounts[0][1]);
                 if (localStorage.getItem('account') != null) {
@@ -618,6 +616,7 @@
                     $scope.key1 = JSON.parse(localStorage.getItem('account'));
                 } else {
                     localStorage.setItem('account',$scope.key1);
+                }
                 }
                 loadStart();
                 $scope.loading = false;

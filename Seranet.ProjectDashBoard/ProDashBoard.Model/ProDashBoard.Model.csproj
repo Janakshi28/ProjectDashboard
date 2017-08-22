@@ -98,7 +98,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -119,6 +121,7 @@
     <Compile Include="FinancialFinalData.cs" />
     <Compile Include="FinancialSummary.cs" />
     <Compile Include="ProcessComplianceWidgetData.cs" />
+    <Compile Include="ProjectCodesData.cs" />
     <Compile Include="Repository\IAccountRepository.cs" />
     <Compile Include="Repository\IAppSettingsRepository.cs" />
     <Compile Include="Repository\IAuthorizationRepository.cs" />
@@ -129,6 +132,7 @@
     <Compile Include="Repository\ICommonDataRepository.cs" />
     <Compile Include="Repository\ICustomerSatResultsRepository.cs" />
     <Compile Include="Repository\ICustomerSatSummaryRepository.cs" />
+    <Compile Include="Repository\IEmailSenderRepository.cs" />
     <Compile Include="Repository\IEmployeeProjectsRepository.cs" />
     <Compile Include="Repository\IFinancialDataRepository.cs" />
     <Compile Include="Repository\IFinancialResultsRepository.cs" />
@@ -155,6 +159,7 @@
     <Compile Include="SatisfactionResults.cs" />
     <Compile Include="Spec.cs" />
     <Compile Include="Summary.cs" />
+    <Compile Include="SurveyEmail.cs" />
     <Compile Include="TeamMembers.cs" />
     <Compile Include="TeamSatisfactionEmployeeSummary.cs" />
     <Compile Include="FinancialResults.cs" />

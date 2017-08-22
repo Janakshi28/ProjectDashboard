@@ -329,6 +329,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\adminPanel\AccountPopUp.html" />
     <Content Include="app\adminPanel\AdminAccount.html" />
     <Content Include="app\adminPanel\AdminEmployees.html" />
     <Content Include="app\adminPanel\adminEmployeesCtrl.js" />
@@ -338,6 +339,7 @@
     <Content Include="app\adminPanel\adminProjectCtrl.js" />
     <Content Include="app\adminPanel\AdminSettings.html" />
     <Content Include="app\adminPanel\adminAccountCtrl.js" />
+    <Content Include="app\adminPanel\AccountPopUpCtrl.js" />
     <Content Include="app\app.js" />
     <Content Include="app\AuthHandler\AuthController.html" />
     <Content Include="app\AuthHandler\AuthController.js" />
@@ -368,7 +370,11 @@
     <Content Include="app\teamSatisfaction\teamCtrl.js" />
     <Content Include="app\teamSatisfaction\teamFormCtrl.js" />
     <Content Include="app\teamSatisfaction\TeamSatisfactionForm.html" />
+    <Content Include="app\adminPanel\TeamSatisfactionSurveyEmail.html" />
+    <Content Include="app\adminPanel\teamSatisfactionSurveyEmailCtrl.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\angular-block-ui.css" />
+    <Content Include="Content\angular-block-ui.min.css" />
     <Content Include="Content\angular-material.css" />
     <Content Include="Content\angular-material.layout-attributes.css" />
     <Content Include="Content\angular-material.layout-attributes.min.css" />
@@ -423,6 +429,8 @@
     <Content Include="Scripts\angular-aria.min.js" />
     <Content Include="Scripts\angular-aria\angular-aria.js" />
     <Content Include="Scripts\angular-aria\angular-aria.min.js" />
+    <Content Include="Scripts\angular-block-ui.js" />
+    <Content Include="Scripts\angular-block-ui.min.js" />
     <Content Include="Scripts\angular-chart.min.js" />
     <Content Include="Scripts\angular-cookies.js" />
     <Content Include="Scripts\angular-cookies.min.js" />
@@ -562,10 +570,13 @@
     <Content Include="fonts\Roboto\Roboto-Thin.ttf" />
     <Content Include="fonts\Roboto\Roboto-ThinItalic.ttf" />
     <Content Include="ClassDiagram1.cd" />
+    <Content Include="Content\angular-block-ui.css.map" />
     <None Include="Properties\PublishProfiles\NewProDashboard.pubxml" />
     <None Include="Properties\PublishProfiles\testifier.pubxml">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="Scripts\angular-block-ui.min.js.map" />
+    <Content Include="Scripts\angular-block-ui.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\globalize.js" />
     <Content Include="Scripts\globalize\currency.js" />
@@ -1439,8 +1450,12 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
-    </Content>
+    
+    <Content Include="packages.config" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </Content>
   </ItemGroup>
+  
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>

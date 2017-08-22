@@ -199,7 +199,7 @@
                     <br>
                         <span id="widgetTitle">RISK MANAGEMENT</span>
                         <div data-ng-show="loading1"><img src="/projectDashboard/Content/Images/ajax-loader.gif" style="align-content:center;padding-left:95px;padding-top:50px;padding-bottom:95px;padding-right:15px;color:gray;"><b>LOADING...</b></div>
-                        <div data-ng-hide="loading1" higgidy-carousel='images3' timeout="5000" data-ng-if="riskShow==true;">
+                        <div data-ng-hide="loading1" higgidy-carousel='images4' timeout="5000" data-ng-if="riskShow==true;">
                             <div higgidy-carousel-images>
                                 <div data-ng-repeat="image in riskDataVales" style="position:relative;line-height: 1.1;width:{{riskDivWidth}}" data-ng-click="riskWidgetClick(image[1].riskUrl)">
                                     <div id="circle" class={{image[0]}} data-ng-if="image[1].riskValue!=-1">
@@ -237,7 +237,7 @@
 
 
 
-                        <div data-ng-if="riskShow==false;" style="margin-top:8%;">
+                        <div data-ng-if="riskShow==false && loading1==false" style="margin-top:8%;">
                             <div style="display:block;margin:0 auto;">
                                 <img style="display:block;margin:0 auto;" src="/projectDashboard/Content/Images/GrayPic.png">
                                 <span id="noInformation">NO INFORMATION FOUND</span>

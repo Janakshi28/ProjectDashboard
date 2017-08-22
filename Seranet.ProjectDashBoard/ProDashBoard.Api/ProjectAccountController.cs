@@ -81,8 +81,15 @@ namespace ProDashBoard.Api
         }
 
         [HttpPost, Route("api/Account/add")]
-        public int add([FromBody] Account account) {
-            return repo.add(account);
+        public HttpResponseMessage add([FromBody] Account account) {
+            if (authRepo.getAdminRights())
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, repo.add(account));
+            }
+            else {
+                return Request.CreateResponse(HttpStatusCode.Forbidden, "Unauthorized action. Access Denied");
+            }
+            
         }
 
         [HttpPut, Route("api/Account/update")]

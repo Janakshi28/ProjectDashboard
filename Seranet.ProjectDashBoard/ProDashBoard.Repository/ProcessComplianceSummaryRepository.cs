@@ -58,8 +58,8 @@ namespace ProDashBoard.Data
 
             int datarows = 0;
 
-            datarows = this._db.Execute(@"INSERT ProcessComplianceSummary([AccountID],[ProjectID],[Year],[Quarter],[Rating],[ProcessVersion]) values (@AccountId,@ProjectId,@Year,@Quarter,@Rating,@ProcessVersion)",
-                new { AccountId = summary.AccountId, ProjectId = summary.ProjectId, Year = summary.Year, Quarter = summary.Quarter,Rating = summary.Rating, ProcessVersion=summary.ProcessVersion });
+            datarows = this._db.Execute(@"INSERT ProcessComplianceSummary([AccountID],[ProjectID],[Year],[Quarter],[Rating],[ProcessVersion],[updateddatetime]) values (@AccountId,@ProjectId,@Year,@Quarter,@Rating,@ProcessVersion,@datetime)",
+                new { AccountId = summary.AccountId, ProjectId = summary.ProjectId, Year = summary.Year, Quarter = summary.Quarter,Rating = summary.Rating, ProcessVersion=summary.ProcessVersion,datetime= DateTime.Now });
 
             return datarows;
         }
